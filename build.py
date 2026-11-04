@@ -1,7 +1,7 @@
 """Build index.html (for bloc.forom.xyz) from page.html (the preview version)."""
 import pathlib
 here = pathlib.Path(__file__).parent
-page = (here / 'page.html').read_text()
+page = (here / 'page.html').read_text(encoding='utf-8')
 head, body = page.split('</style>', 1)
 out = f'''<!doctype html>
 <html lang="fr">
@@ -22,5 +22,5 @@ out = f'''<!doctype html>
 </body>
 </html>
 '''
-(here / 'index.html').write_text(out)
+(here / 'index.html').write_text(out, encoding='utf-8')
 print('index.html built')
