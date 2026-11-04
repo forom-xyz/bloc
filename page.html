@@ -1,0 +1,1512 @@
+<title>Bloc Couleur</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Bloc Couleur, le parti violet du Québec. On ne promet pas : on construit, on invente et on partage.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tiny5&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one manifesto column with a left-to-right colour spectrum as the spine.
+   Red (left) and blue (right) meet in violet; solar gold and leaf green carry the solarpunk side. */
+:root {
+  --paper: #F2EFF6;
+  --surface: #FAF8FC;
+  --ink: #1D1430;
+  --muted: #5C5272;
+  --line: #D8D0E5;
+  --violet: #5A2A9C;
+  --on-violet: #FFFFFF;
+  --left: #2D68D8;
+  --right: #D9443F;
+  --leaf: #2C7A4C;
+  --sun: #E9A72B;
+
+  --display: "Tiny5", ui-monospace, "Courier New", monospace;
+  --body: "Atkinson Hyperlegible", "Verdana", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  --step-0: 1.0625rem;
+  --step-1: 1.25rem;
+  --step-2: 1.6rem;
+  --step-3: clamp(2rem, 4.2vw, 3.1rem);
+  --step-4: clamp(2.7rem, 7.4vw, 5.6rem);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #120D1C; --surface: #1A1428; --ink: #EEE8F8; --muted: #A89EBE; --line: #2F2643;
+    --violet: #B48EFF; --on-violet: #160E24; --left: #73A4FF; --right: #FF7B6F; --leaf: #72CC95; --sun: #F6C45A;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #120D1C; --surface: #1A1428; --ink: #EEE8F8; --muted: #A89EBE; --line: #2F2643;
+  --violet: #B48EFF; --on-violet: #160E24; --left: #73A4FF; --right: #FF7B6F; --leaf: #72CC95; --sun: #F6C45A;
+  color-scheme: dark;
+}
+
+html:not([data-lang="en"]) .l[lang="en"],
+html[data-lang="en"] .l[lang="fr"] { display: none; }
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: var(--step-0);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap {
+  max-width: 1140px;
+  margin-inline: auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+h1, h2, h3 { font-family: var(--display); font-weight: 400; line-height: 1.08; text-wrap: balance; margin: 0; letter-spacing: 0; }
+h2 { font-size: var(--step-3); font-weight: 400; }
+h3 { font-size: var(--step-1); font-weight: 400; }
+p { margin: 0; max-width: 64ch; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; }
+
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ---------- Header ---------- */
+.top { padding-block: 20px; }
+.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-family: var(--display); font-weight: 400; font-size: 1.2rem; letter-spacing: -0.01em; }
+.brand svg { width: 32px; height: 32px; flex: none; }
+.lg-b { fill: var(--left); } .lg-r { fill: var(--right); } .lg-v { fill: var(--violet); } .lg-o { fill: var(--ink); }
+.lg-hb { fill: color-mix(in srgb, var(--left) 45%, #fff); } .lg-hr { fill: color-mix(in srgb, var(--right) 45%, #fff); }
+.nav { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
+.nav a { text-decoration: none; font-size: 0.95rem; color: var(--muted); }
+.nav a:hover { color: var(--ink); }
+.lang { display: inline-flex; border: 2px solid var(--ink); padding: 2px; }
+.lang button {
+  font: 500 0.78rem/1 var(--mono); letter-spacing: 0.08em;
+  border: 0; background: transparent; color: var(--muted);
+  padding: 7px 11px; cursor: pointer;
+}
+.lang button[aria-pressed="true"] { background: var(--violet); color: var(--on-violet); }
+.nav .links { display: contents; }
+@media (max-width: 760px) { .nav .links { display: none; } }
+
+/* ---------- Hero ---------- */
+.hero { padding-block: 40px 72px; }
+.hero .wrap { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 48px; align-items: center; }
+.hero-text { display: grid; gap: 24px; min-width: 0; }
+h1 { font-size: var(--step-4); font-weight: 400; }
+h1 em { font-style: normal; color: var(--violet); }
+.lead { font-size: var(--step-1); line-height: 1.5; color: var(--ink); max-width: 34ch; }
+.cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--display); font-weight: 400; font-size: 1.02rem;
+  padding: 13px 20px; text-decoration: none;
+  border: 3px solid var(--ink);
+  box-shadow: 4px 4px 0 var(--ink);
+  transition: transform .08s steps(2), box-shadow .08s steps(2);
+}
+.btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--ink); }
+.btn:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--ink); }
+.btn-solid { background: var(--violet); color: var(--on-violet); }
+.btn-ghost { color: var(--ink); background: var(--surface); }
+
+.chroma { margin: 0; width: 100%; max-width: 440px; justify-self: center; display: grid; gap: 18px; }
+.chroma-wheel { position: relative; }
+.chroma-wheel canvas { width: 100%; height: auto; aspect-ratio: 1; display: block; image-rendering: crisp-edges; image-rendering: pixelated; }
+.chroma-center { position: absolute; inset: 0; display: grid; place-items: center; pointer-events: none;
+  font-family: var(--display); font-weight: 400; font-size: clamp(1.05rem, 3.4vw, 1.5rem); color: var(--violet); }
+.chroma-legend { display: flex; justify-content: space-between; gap: 16px; }
+.lg { display: grid; gap: 2px; min-width: 0; }
+.lg-right { text-align: right; justify-items: end; }
+.lg-name { display: inline-flex; align-items: center; gap: 8px; font-family: var(--display); font-weight: 400; font-size: 1.25rem; }
+.lg-sub { font-family: var(--mono); font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.chip { width: 14px; height: 14px; flex: none; }
+.chip-left { background: var(--left); } .chip-right { background: var(--right); }
+
+@media (max-width: 860px) {
+  .hero .wrap { grid-template-columns: 1fr; gap: 36px; }
+  .chroma { max-width: 380px; }
+}
+
+/* ---------- Sections ---------- */
+section { padding-block: 80px; }
+.rule { border-top: 1px solid var(--line); }
+.head { display: grid; gap: 14px; margin-bottom: 44px; }
+.head p { color: var(--muted); font-size: var(--step-1); line-height: 1.5; }
+
+/* Why */
+.why .wrap { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 48px; }
+.why .head { margin-bottom: 0; align-content: start; }
+.why-body { display: grid; gap: 20px; min-width: 0; font-size: 1.12rem; }
+.why-body strong { color: var(--violet); }
+@media (max-width: 860px) { .why .wrap { grid-template-columns: 1fr; gap: 24px; } }
+
+/* Spectrum */
+.spectrum-bar { height: 16px; background: linear-gradient(90deg, var(--left) 0 20%, color-mix(in srgb, var(--left) 50%, var(--violet)) 20% 40%, var(--violet) 40% 60%, color-mix(in srgb, var(--right) 50%, var(--violet)) 60% 80%, var(--right) 80% 100%); }
+.spectrum-cols { display: grid; grid-template-columns: 1fr 1.2fr 1fr; gap: 28px; margin-top: 28px; }
+.spectrum-cols > div { display: grid; gap: 8px; align-content: start; min-width: 0; }
+.spectrum-cols .mid { text-align: center; }
+.spectrum-cols .end { text-align: right; }
+.spectrum-cols .mid p, .spectrum-cols .end p { margin-inline: auto 0; }
+.spectrum-cols .mid p { margin-inline: auto; }
+.tag { font-family: var(--mono); font-size: 0.8rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 500; }
+.tag-left { color: var(--left); } .tag-right { color: var(--right); } .tag-violet { color: var(--violet); }
+.big { font-family: var(--display); font-size: var(--step-2); font-weight: 400; line-height: 1.1; }
+.spectrum-cols p { color: var(--muted); }
+@media (max-width: 760px) {
+  .spectrum-cols { grid-template-columns: 1fr; }
+  .spectrum-cols .mid, .spectrum-cols .end { text-align: left; }
+  .spectrum-cols .mid p, .spectrum-cols .end p { margin-inline: 0; }
+}
+
+/* Method */
+.no-promise s { text-decoration-thickness: 0.09em; text-decoration-color: var(--left); color: var(--muted); }
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 2px solid var(--ink); }
+.steps li { padding: 22px 22px 8px 0; display: grid; gap: 10px; align-content: start; min-width: 0; }
+.steps li + li { padding-left: 22px; border-left: 1px solid var(--line); }
+.steps .n { font-family: var(--mono); font-size: 0.85rem; color: var(--violet); font-weight: 500; }
+.steps p { color: var(--muted); }
+.cc { margin-top: 36px; display: flex; gap: 14px; align-items: center; flex-wrap: wrap; font-family: var(--mono); font-size: 0.85rem; color: var(--muted); }
+.cc b { font-weight: 500; color: var(--leaf); border: 1px solid var(--leaf); padding: 4px 10px; }
+@media (max-width: 900px) {
+  .steps { grid-template-columns: 1fr 1fr; }
+  .steps li:nth-child(3) { padding-left: 0; border-left: 0; }
+  .steps li:nth-child(n+3) { border-top: 1px solid var(--line); }
+}
+@media (max-width: 520px) {
+  .steps { grid-template-columns: 1fr; }
+  .steps li, .steps li + li { padding-left: 0; border-left: 0; }
+  .steps li + li { border-top: 1px solid var(--line); }
+}
+
+/* Pillars */
+.pillars { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+.pillar { padding: 28px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); display: grid; gap: 12px; align-content: start; min-width: 0; }
+.pillar .tag { color: var(--violet); }
+.pillar.edu .tag { color: var(--sun); }
+.pillar.earth .tag { color: var(--leaf); }
+.pillar.ai .tag, .pillar.bot .tag { color: var(--right); }
+.pillar.key .tag, .pillar.all .tag { color: var(--left); }
+.pillar p { color: var(--muted); }
+@media (max-width: 900px) { .pillars { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .pillars { grid-template-columns: 1fr; } .pillar { padding: 22px 18px; } }
+
+.key-zoom {
+  margin-top: 40px; background: var(--surface); border: 3px solid var(--ink); box-shadow: 6px 6px 0 var(--violet);
+  padding: 28px; display: grid; grid-template-columns: 1fr auto 1fr; gap: 24px; align-items: center;
+}
+.key-card { display: grid; gap: 6px; min-width: 0; }
+.key-card code, .key-card s { font-family: var(--mono); font-size: 1.15rem; overflow-wrap: anywhere; }
+.key-card s { color: var(--muted); text-decoration-color: var(--left); text-decoration-thickness: 2px; }
+.key-card code { color: var(--violet); font-weight: 500; }
+.key-card small { color: var(--muted); font-size: 0.92rem; }
+.arrow { font-family: var(--mono); font-size: 2rem; color: var(--violet); }
+@media (max-width: 640px) { .key-zoom { grid-template-columns: 1fr; } .arrow { transform: rotate(90deg); justify-self: start; } }
+
+/* Route */
+.route { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; position: relative; }
+.route li { display: grid; grid-template-columns: 160px 28px 1fr; gap: 20px; padding-bottom: 36px; min-width: 0; }
+.route .lat { font-family: var(--mono); font-size: 0.82rem; color: var(--muted); text-align: right; padding-top: 4px; }
+.route .dot { position: relative; display: flex; justify-content: center; }
+.route .dot::before { content: ""; position: absolute; top: 14px; bottom: -36px; width: 2px; background: var(--line); }
+.route li:last-child .dot::before { display: none; }
+.route .dot span { width: 16px; height: 16px; background: var(--paper); border: 3px solid var(--violet); margin-top: 4px; position: relative; }
+.route li:first-child .dot span { background: var(--violet); }
+.route li:last-child .dot span { background: var(--sun); border-color: var(--sun); }
+.route .body { display: grid; gap: 6px; min-width: 0; }
+.route .body p { color: var(--muted); }
+@media (max-width: 640px) {
+  .route li { grid-template-columns: 22px 1fr; gap: 14px; }
+  .route .lat { grid-column: 2; grid-row: 1; text-align: left; padding-top: 0; }
+  .route .dot { grid-column: 1; grid-row: 1 / span 2; }
+  .route .body { grid-column: 2; }
+}
+
+/* Forom */
+.forom .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+.forom .head { margin-bottom: 0; }
+.forom-list { display: grid; gap: 0; margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line); }
+.forom-list li { display: grid; gap: 4px; padding-block: 20px; border-bottom: 1px solid var(--line); min-width: 0; }
+.forom-list p { color: var(--muted); }
+@media (max-width: 860px) { .forom .wrap { grid-template-columns: 1fr; gap: 28px; } }
+
+/* Join band */
+.join { background: var(--violet); color: var(--on-violet); }
+.join .wrap { display: grid; gap: 22px; justify-items: start; }
+.join h2 { font-size: var(--step-4); }
+.join p { font-size: var(--step-1); line-height: 1.5; max-width: 46ch; }
+.join .btn { background: var(--on-violet); color: var(--violet); border-color: var(--on-violet); box-shadow: 4px 4px 0 color-mix(in srgb, var(--violet) 50%, #000); }
+.join .btn:hover { box-shadow: 6px 6px 0 color-mix(in srgb, var(--violet) 50%, #000); }
+
+footer { padding-block: 36px 130px; }
+footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-family: var(--mono); font-size: 0.8rem; color: var(--muted); }
+
+/* Pixel art */
+.pix-scene { margin: 0 0 48px; display: grid; gap: 10px; }
+.pix-scene canvas { width: 100%; height: auto; aspect-ratio: 3 / 1; display: block; image-rendering: crisp-edges; image-rendering: pixelated; border: 1px solid var(--line); }
+.pix-scene figcaption { display: flex; justify-content: space-between; gap: 12px; font-family: var(--mono); font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.pix-icon { width: 48px; height: 48px; display: block; image-rendering: crisp-edges; image-rendering: pixelated; }
+
+/* Quiz */
+.quiz-grid { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 48px; align-items: start; }
+.quiz-wheel { display: grid; gap: 14px; justify-items: center; }
+.quiz-wheel canvas { width: 100%; max-width: 340px; height: auto; aspect-ratio: 1; display: block; image-rendering: crisp-edges; image-rendering: pixelated; }
+.quiz-readout { text-align: center; font-family: var(--mono); font-size: .85rem; color: var(--muted); min-height: 3.4em; }
+.quiz-readout b { display: block; font-family: var(--display); font-weight: 400; font-size: 1.5rem; }
+.quiz-card { border: 3px solid var(--ink); background: var(--surface); box-shadow: 6px 6px 0 var(--violet); padding: 28px; display: grid; gap: 18px; min-width: 0; }
+.quiz-card h3:focus { outline: none; }
+.q-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.q-top .tag { color: var(--violet); }
+.q-dots { display: flex; gap: 4px; }
+.q-dots i { width: 12px; height: 12px; background: var(--line); }
+.q-dots i.done { background: var(--violet); }
+.q-dots i.cur { background: var(--sun); }
+.q-st { display: grid; gap: 10px; }
+.q-st p { max-width: none; display: flex; gap: 12px; align-items: flex-start; padding: 12px; border: 2px solid var(--line); background: var(--paper); }
+.q-letter { flex: none; width: 28px; height: 28px; display: grid; place-items: center; font-family: var(--display); font-size: 1.1rem; color: var(--paper); }
+.q-l { background: var(--left); } .q-r { background: var(--right); }
+.q-scale { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+.q-scale button { height: 56px; border: 3px solid var(--ink); box-shadow: 3px 3px 0 var(--ink); cursor: pointer; transition: transform .08s steps(2), box-shadow .08s steps(2); }
+.q-scale button:nth-child(1) { background: var(--left); }
+.q-scale button:nth-child(2) { background: color-mix(in srgb, var(--left) 50%, var(--violet)); }
+.q-scale button:nth-child(3) { background: var(--violet); }
+.q-scale button:nth-child(4) { background: color-mix(in srgb, var(--right) 50%, var(--violet)); }
+.q-scale button:nth-child(5) { background: var(--right); }
+.q-scale button:hover { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 var(--ink); }
+.q-scale button[aria-pressed="true"] { transform: translate(3px, 3px); box-shadow: none; outline: 3px solid var(--sun); outline-offset: 2px; }
+.q-scale-labels { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; font-family: var(--mono); font-size: .75rem; letter-spacing: .04em; color: var(--muted); }
+.q-scale-labels span:nth-child(2) { text-align: center; } .q-scale-labels span:nth-child(3) { text-align: right; }
+.linkbtn { justify-self: start; background: none; border: 0; padding: 4px 0; color: var(--muted); font: inherit; font-size: .95rem; text-decoration: underline; cursor: pointer; }
+.res-name { font-size: var(--step-3); }
+.quiz-card .res-text { color: var(--muted); }
+.share { display: grid; gap: 10px; }
+.share-text { font-family: var(--mono); font-size: .85rem; padding: 10px 12px; border: 2px dashed var(--line); user-select: all; overflow-wrap: anywhere; max-width: none; }
+.res-actions { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+.copy-msg { font-family: var(--mono); font-size: .8rem; color: var(--leaf); min-height: 1.2em; }
+@media (max-width: 860px) { .quiz-grid { grid-template-columns: 1fr; gap: 24px; } .quiz-wheel canvas { max-width: 240px; } }
+@media (max-width: 520px) { .quiz-card { padding: 20px 16px; } .q-scale button { height: 46px; } }
+
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* Quiz share image */
+.share-wrap { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 18px; align-items: start; }
+.share-img { width: 150px; height: auto; display: block; border: 3px solid var(--ink); box-shadow: 4px 4px 0 var(--violet); }
+.hint { font-size: .85rem; color: var(--muted); }
+@media (max-width: 520px) { .share-wrap { grid-template-columns: 1fr; } .share-img { width: 160px; } }
+
+/* Rules of the table */
+.rules-wrap { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 48px; align-items: start; }
+.rules-wrap .head { margin-bottom: 0; }
+.table-px { width: 100%; max-width: 384px; height: auto; aspect-ratio: 64 / 20; display: block; margin-top: 12px; image-rendering: crisp-edges; image-rendering: pixelated; }
+.table-rules { list-style: none; margin: 0; padding: 0; display: grid; border-top: 3px solid var(--ink); }
+.table-rules li { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 16px; padding-block: 18px; border-bottom: 1px solid var(--line); }
+.tr-n { width: 44px; height: 44px; display: grid; place-items: center; font-family: var(--display); font-size: 1.4rem; background: var(--violet); color: var(--on-violet); }
+.table-rules li > div { display: grid; gap: 4px; min-width: 0; }
+.table-rules p { color: var(--muted); }
+.rules-note { margin-top: 18px; font-size: .95rem; color: var(--ink); }
+@media (max-width: 860px) { .rules-wrap { grid-template-columns: 1fr; gap: 28px; } }
+
+/* AI charter */
+.draft { display: inline-flex; align-items: center; gap: 8px; justify-self: start; font-family: var(--mono); font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: var(--ink); border: 2px solid var(--sun); padding: 4px 10px; }
+.draft i { width: 10px; height: 10px; background: var(--sun); }
+.charter { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+.charter li { padding: 24px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); display: grid; gap: 10px; align-content: start; min-width: 0; }
+.ch-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.ch-n { font-family: var(--mono); font-size: .85rem; font-weight: 500; color: var(--violet); }
+.ch-status { font-family: var(--mono); font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); border: 1px dashed var(--muted); padding: 2px 8px; }
+.charter p { color: var(--muted); }
+@media (max-width: 760px) { .charter { grid-template-columns: 1fr; } .charter li { padding: 20px 18px; } }
+
+/* Countdown */
+.countdown { margin-top: 12px; display: flex; flex-wrap: wrap; align-items: center; gap: 20px 28px; padding: 24px; background: var(--surface); border: 3px solid var(--ink); box-shadow: 6px 6px 0 var(--sun); }
+.cd-digits { display: flex; gap: 6px; }
+.cd-digits span { width: 1.15em; display: grid; place-items: center; padding-block: .12em; font-family: var(--display); font-size: clamp(2.6rem, 8vw, 4.2rem); line-height: 1; background: var(--ink); color: var(--sun); }
+.cd-text { display: grid; gap: 4px; min-width: 0; }
+.cd-text b { font-family: var(--display); font-weight: 400; font-size: var(--step-2); }
+.cd-text span { color: var(--muted); }
+
+/* Projects */
+.projects { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+.project { border: 3px solid var(--ink); background: var(--surface); box-shadow: 6px 6px 0 var(--line); padding: 24px; display: grid; gap: 12px; align-content: start; min-width: 0; }
+.project .tag { color: var(--violet); }
+.project.wide { grid-column: 1 / -1; }
+.slots { display: grid; gap: 8px; padding: 14px; border: 2px dashed var(--line); }
+.slots-bar { display: grid; grid-template-columns: repeat(10, 1fr); gap: 3px; }
+.slots-bar i { height: 12px; background: var(--line); }
+.slots-bar i.on { background: var(--leaf); }
+.slots-count { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; font-family: var(--mono); font-size: .8rem; color: var(--muted); }
+.slots-count b { font-family: var(--display); font-weight: 400; font-size: 1.15rem; color: var(--ink); }
+.project .tag a { color: inherit; }
+.project p { color: var(--muted); }
+.stage { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; margin-top: 6px; }
+.stage i { height: 14px; background: var(--line); }
+.stage i.on { background: var(--violet); }
+@media (prefers-reduced-motion: no-preference) { .stage i.now { animation: pxblink 1.2s steps(1) infinite; } }
+@keyframes pxblink { 50% { background: var(--sun); } }
+.stage-names { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; font-family: var(--mono); font-size: .72rem; letter-spacing: .04em; color: var(--muted); }
+.stage-names [aria-current] { color: var(--ink); font-weight: 500; }
+.project .next { color: var(--ink); font-size: .95rem; border-top: 2px dashed var(--line); padding-top: 12px; }
+.project .next b { font-family: var(--display); font-weight: 400; }
+.projects-cta { margin-top: 32px; display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+@media (max-width: 760px) { .projects { grid-template-columns: 1fr; } .project { padding: 20px 18px; } }
+
+/* Forom ecosystem */
+.eco { grid-column: 1 / -1; display: grid; gap: 16px; margin-top: 8px; }
+.eco-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.eco-list li { display: grid; gap: 6px; align-content: start; padding: 16px; border: 2px solid var(--ink); min-width: 0; }
+.eco-list a { font-family: var(--mono); font-weight: 500; color: var(--violet); overflow-wrap: anywhere; }
+.eco-list span { color: var(--muted); font-size: .95rem; }
+.eco-list .todo { font-style: italic; }
+@media (max-width: 900px) { .eco-list { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 520px) { .eco-list { grid-template-columns: 1fr; } }
+
+/* FAQ */
+.faq-list { border-top: 3px solid var(--ink); max-width: 880px; }
+.faq-list details { border-bottom: 1px solid var(--line); }
+.faq-list summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding-block: 18px; font-family: var(--display); font-weight: 400; font-size: 1.2rem; line-height: 1.3; }
+.faq-list summary::-webkit-details-marker { display: none; }
+.faq-list summary::after { content: "+"; font-family: var(--mono); font-size: 1.4rem; line-height: 1; color: var(--violet); flex: none; }
+.faq-list details[open] summary::after { content: "−"; }
+.faq-list .a { padding-bottom: 22px; display: grid; gap: 10px; color: var(--muted); }
+
+/* Harfi, the snowy owl guide */
+.owl { position: fixed; z-index: 20; right: calc(12px + env(safe-area-inset-right, 0px)); bottom: calc(12px + env(safe-area-inset-bottom, 0px)); display: flex; align-items: flex-end; gap: 10px; pointer-events: none; }
+.owl > * { pointer-events: auto; }
+.owl-bubble { position: relative; max-width: 250px; margin-bottom: 44px; padding: 12px 30px 12px 14px; background: var(--surface); color: var(--ink); border: 3px solid var(--ink); box-shadow: 4px 4px 0 var(--violet); font-size: .92rem; line-height: 1.45; }
+.owl-bubble::after { content: ""; position: absolute; right: -11px; bottom: 12px; width: 8px; height: 8px; background: var(--ink); }
+.owl-bubble b { font-family: var(--display); font-weight: 400; color: var(--violet); }
+.owl-close { position: absolute; top: 2px; right: 4px; border: 0; background: transparent; color: var(--muted); font: 700 1.2rem/1 var(--mono); padding: 4px 6px; cursor: pointer; }
+.owl-btn { border: 0; background: transparent; padding: 0; cursor: pointer; }
+.owl-btn canvas { width: 84px; height: 66px; display: block; image-rendering: crisp-edges; image-rendering: pixelated; }
+@media (prefers-reduced-motion: no-preference) { .owl-btn canvas { animation: hop 1.6s steps(1) infinite; } }
+@keyframes hop { 50% { transform: translateY(-3px); } }
+@media (max-width: 560px) {
+  .owl-btn canvas { width: 56px; height: 44px; }
+  .owl-bubble { max-width: 210px; margin-bottom: 30px; font-size: .85rem; }
+}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Bloc Couleur">
+      <svg viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true"><rect x="3" y="3" width="4" height="1" class="lg-b"/><rect x="9" y="3" width="4" height="1" class="lg-r"/><rect x="2" y="4" width="6" height="1" class="lg-b"/><rect x="8" y="4" width="2" height="1" class="lg-r"/><rect x="10" y="4" width="2" height="1" class="lg-hr"/><rect x="12" y="4" width="2" height="1" class="lg-r"/><rect x="1" y="5" width="1" height="1" class="lg-b"/><rect x="2" y="5" width="2" height="1" class="lg-hb"/><rect x="4" y="5" width="3" height="1" class="lg-b"/><rect x="7" y="5" width="2" height="1" class="lg-v"/><rect x="9" y="5" width="1" height="1" class="lg-r"/><rect x="10" y="5" width="1" height="1" class="lg-hr"/><rect x="11" y="5" width="4" height="1" class="lg-r"/><rect x="0" y="6" width="2" height="1" class="lg-b"/><rect x="2" y="6" width="1" height="1" class="lg-hb"/><rect x="3" y="6" width="3" height="1" class="lg-b"/><rect x="6" y="6" width="4" height="1" class="lg-v"/><rect x="10" y="6" width="6" height="1" class="lg-r"/><rect x="0" y="7" width="6" height="1" class="lg-b"/><rect x="6" y="7" width="4" height="1" class="lg-v"/><rect x="10" y="7" width="6" height="1" class="lg-r"/><rect x="0" y="8" width="6" height="1" class="lg-b"/><rect x="6" y="8" width="4" height="1" class="lg-v"/><rect x="10" y="8" width="6" height="1" class="lg-r"/><rect x="0" y="9" width="6" height="1" class="lg-b"/><rect x="6" y="9" width="4" height="1" class="lg-v"/><rect x="10" y="9" width="6" height="1" class="lg-r"/><rect x="1" y="10" width="6" height="1" class="lg-b"/><rect x="7" y="10" width="2" height="1" class="lg-v"/><rect x="9" y="10" width="6" height="1" class="lg-r"/><rect x="2" y="11" width="6" height="1" class="lg-b"/><rect x="8" y="11" width="6" height="1" class="lg-r"/><rect x="3" y="12" width="4" height="1" class="lg-b"/><rect x="9" y="12" width="4" height="1" class="lg-r"/></svg>
+      Bloc Couleur
+    </a>
+    <nav class="nav" aria-label="Principale">
+      <span class="links">
+        <a href="#pourquoi"><span class="l" lang="fr">Pourquoi</span><span class="l" lang="en">Why</span></a>
+        <a href="#quiz">Quiz</a>
+        <a href="#methode"><span class="l" lang="fr">Méthode</span><span class="l" lang="en">Method</span></a>
+        <a href="#piliers"><span class="l" lang="fr">Piliers</span><span class="l" lang="en">Pillars</span></a>
+        <a href="#projets"><span class="l" lang="fr">Projets</span><span class="l" lang="en">Projects</span></a>
+        <a href="#charte"><span class="l" lang="fr">Charte IA</span><span class="l" lang="en">AI charter</span></a>
+        <a href="#route"><span class="l" lang="fr">Route</span><span class="l" lang="en">Roadmap</span></a>
+        <a href="#forom">Forom</a>
+        <a href="#faq">FAQ</a>
+      </span>
+      <div class="lang" role="group" aria-label="Langue / Language">
+        <button type="button" id="lang-fr" data-set="fr" aria-pressed="true">FR</button>
+        <button type="button" id="lang-en" data-set="en" aria-pressed="false">EN</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <section class="hero" aria-labelledby="h-hero">
+    <div class="wrap">
+      <div class="hero-text">
+        <div class="eyebrow">
+          <span class="l" lang="fr">Québec · Parti en fondation · Cap sur 2030</span>
+          <span class="l" lang="en">Québec · Party in the making · Heading for 2030</span>
+        </div>
+        <h1 id="h-hero">
+          <span class="l" lang="fr">Le <em>violet</em>, c’est l’équilibre.</span>
+          <span class="l" lang="en"><em>Purple</em> is balance.</span>
+        </h1>
+        <p class="lead l" lang="fr">Bloc Couleur est le parti violet du Québec. On ne fait pas de promesses&nbsp;: on construit, on invente, et on partage ce qui marche avec le monde entier.</p>
+        <p class="lead l" lang="en">Bloc Couleur is Québec’s purple party. We don’t make promises. We build, we invent, and we share what works with the whole world.</p>
+        <div class="cta-row">
+          <a class="btn btn-solid" href="#joindre"><span class="l" lang="fr">Rejoindre le bloc</span><span class="l" lang="en">Join the bloc</span></a>
+          <a class="btn btn-ghost" href="#methode"><span class="l" lang="fr">Notre méthode</span><span class="l" lang="en">Our method</span></a>
+        </div>
+      </div>
+
+      <figure class="chroma">
+        <div class="chroma-wheel">
+          <canvas id="chroma" width="56" height="56" role="img" aria-label="Cercle chromatique en pixels : le bleu (gauche, égalité) et le rouge (droite, liberté) se rejoignent dans le violet, l’équilibre."></canvas>
+          <span class="chroma-center"><span class="l" lang="fr">Équilibre</span><span class="l" lang="en">Balance</span></span>
+        </div>
+        <figcaption class="chroma-legend">
+          <span class="lg lg-left">
+            <span class="lg-name"><i class="chip chip-left"></i><span class="l" lang="fr">Égalité</span><span class="l" lang="en">Equality</span></span>
+            <span class="lg-sub"><span class="l" lang="fr">Humanité · gauche</span><span class="l" lang="en">Humanity · left</span></span>
+          </span>
+          <span class="lg lg-right">
+            <span class="lg-name"><span class="l" lang="fr">Liberté</span><span class="l" lang="en">Liberty</span><i class="chip chip-right"></i></span>
+            <span class="lg-sub"><span class="l" lang="fr">Progrès · droite</span><span class="l" lang="en">Progress · right</span></span>
+          </span>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- WHY -->
+  <section id="pourquoi" class="why rule" aria-labelledby="h-why">
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="l" lang="fr">Pourquoi maintenant</span><span class="l" lang="en">Why now</span></div>
+        <h2 id="h-why"><span class="l" lang="fr">Un nouveau monde arrive. On veut le construire, pas le subir.</span><span class="l" lang="en">A new world is coming. We want to build it, not just endure it.</span></h2>
+      </div>
+      <div class="why-body">
+        <p class="l" lang="fr">L’intelligence artificielle entre dans nos maisons. Bientôt, des robots seront construits dans nos garages. Et chaque année, des jeunes de 12 à 15 ans quittent l’école sans qu’on leur ouvre une autre porte vers le savoir.</p>
+        <p class="l" lang="en">Artificial intelligence is entering our homes. Soon, robots will be built in our garages. And every year, kids aged 12 to 15 leave school without anyone opening another door to knowledge for them.</p>
+        <p class="l" lang="fr">Pendant ce temps, la politique s’est coupée en deux camps qui ne se parlent plus. Nous croyons que les vraies solutions se trouvent là où les deux se rencontrent.</p>
+        <p class="l" lang="en">Meanwhile, politics has split into two camps that no longer talk to each other. We believe the best solutions are found where the two meet.</p>
+        <p class="l" lang="fr">Nous sommes jeunes, motivés et <strong>solarpunk</strong>&nbsp;: on pense que l’avenir peut être lumineux, vert et juste, à condition de le bâtir ensemble.</p>
+        <p class="l" lang="en">We are young, motivated and <strong>solarpunk</strong>. We think the future can be bright, green and fair, as long as we build it together.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPECTRUM -->
+  <section id="equilibre" class="rule" aria-labelledby="h-spec">
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="l" lang="fr">Tout le spectre est invité</span><span class="l" lang="en">The whole spectrum is invited</span></div>
+        <h2 id="h-spec"><span class="l" lang="fr">Socialistes de cœur. Ouverts à tout le monde.</span><span class="l" lang="en">Socialist at heart. Open to everyone.</span></h2>
+        <p class="l" lang="fr">On invite la gauche radicale comme la droite radicale à s’asseoir à la même table. Confronter les idées opposées, dans le respect, c’est comme ça qu’on trouve des solutions solides.</p>
+        <p class="l" lang="en">We invite the far left and the far right to sit at the same table. Confronting opposite ideas, with respect, is how we find solutions that hold.</p>
+      </div>
+      <div class="spectrum-bar" role="presentation"></div>
+      <div class="spectrum-cols">
+        <div>
+          <span class="tag tag-left"><span class="l" lang="fr">Gauche</span><span class="l" lang="en">Left</span></span>
+          <span class="big"><span class="l" lang="fr">Égalité et humanité</span><span class="l" lang="en">Equality and humanity</span></span>
+          <p class="l" lang="fr">Personne n’est laissé derrière.</p>
+          <p class="l" lang="en">Nobody gets left behind.</p>
+        </div>
+        <div class="mid">
+          <span class="tag tag-violet"><span class="l" lang="fr">Violet</span><span class="l" lang="en">Purple</span></span>
+          <span class="big"><span class="l" lang="fr">L’équilibre</span><span class="l" lang="en">Balance</span></span>
+          <p class="l" lang="fr">Ce qu’il faut pour atteindre notre plus grand objectif&nbsp;: sauver l’humanité.</p>
+          <p class="l" lang="en">What it takes to reach our biggest goal: saving humanity.</p>
+        </div>
+        <div class="end">
+          <span class="tag tag-right"><span class="l" lang="fr">Droite</span><span class="l" lang="en">Right</span></span>
+          <span class="big"><span class="l" lang="fr">Liberté et progrès</span><span class="l" lang="en">Liberty and progress</span></span>
+          <p class="l" lang="fr">Chacun peut bâtir et avancer.</p>
+          <p class="l" lang="en">Everyone is free to build and move forward.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUIZ -->
+  <section id="quiz" class="rule" aria-labelledby="h-quiz">
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow">Quiz</div>
+        <h2 id="h-quiz"><span class="l" lang="fr">Où es-tu sur le cercle&nbsp;?</span><span class="l" lang="en">Where are you on the circle?</span></h2>
+        <p class="l" lang="fr">Cinq questions, deux idées à chaque fois. Choisis où tu te places entre les deux. Il n’y a pas de mauvaise réponse.</p><p class="l" lang="en">Five questions, two ideas each time. Choose where you stand between them. There are no wrong answers.</p>
+      </div>
+      <div class="quiz-grid">
+        <div class="quiz-wheel">
+          <canvas id="quiz-wheel" width="56" height="56" role="img" aria-label="Cercle chromatique avec une aiguille qui montre ta position / Colour wheel with a needle showing your position"></canvas>
+          <p class="quiz-readout" id="quiz-readout" aria-live="polite"></p>
+        </div>
+        <div class="quiz-card" id="quiz-card"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RULES OF THE TABLE -->
+  <section id="regles" class="rule" aria-labelledby="h-rules">
+    <div class="wrap rules-wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="l" lang="fr">Les règles de la table</span><span class="l" lang="en">Rules of the table</span></div>
+        <h2 id="h-rules"><span class="l" lang="fr">Tout le monde est invité. Voici comment on se parle.</span><span class="l" lang="en">Everyone is invited. Here is how we talk to each other.</span></h2>
+        <p class="l" lang="fr">Pour que la gauche et la droite puissent vraiment se confronter, il faut des règles claires. Elles valent pour tout le monde, peu importe la couleur.</p><p class="l" lang="en">For the left and the right to truly confront each other, we need clear rules. They apply to everyone, whatever their colour.</p>
+        <canvas class="table-px" id="table-px" width="64" height="20" aria-hidden="true"></canvas>
+      </div>
+      <div>
+        <ol class="table-rules">
+          <li><span class="tr-n" aria-hidden="true">1</span><div><h3><span class="l" lang="fr">On critique les idées, pas les personnes.</span><span class="l" lang="en">We challenge ideas, not people.</span></h3><p class="l" lang="fr">On peut être en désaccord total sans insulter ni rabaisser qui que ce soit.</p><p class="l" lang="en">We can disagree completely without insulting or belittling anyone.</p></div></li>
+          <li><span class="tr-n" aria-hidden="true">2</span><div><h3><span class="l" lang="fr">Zéro haine.</span><span class="l" lang="en">Zero hate.</span></h3><p class="l" lang="fr">Aucun propos raciste, sexiste, homophobe, transphobe ou qui vise un groupe. Ces propos ne sont pas des opinions à débattre.</p><p class="l" lang="en">Nothing racist, sexist, homophobic, transphobic or aimed at a group. Those are not opinions up for debate.</p></div></li>
+          <li><span class="tr-n" aria-hidden="true">3</span><div><h3><span class="l" lang="fr">On écoute jusqu’au bout.</span><span class="l" lang="en">We listen all the way through.</span></h3><p class="l" lang="fr">On laisse l’autre finir et on redit son idée dans nos mots avant de répondre.</p><p class="l" lang="en">We let the other person finish and repeat their idea in our own words before answering.</p></div></li>
+          <li><span class="tr-n" aria-hidden="true">4</span><div><h3><span class="l" lang="fr">On apporte des faits.</span><span class="l" lang="en">We bring facts.</span></h3><p class="l" lang="fr">Quand on avance un chiffre ou un fait, on dit d’où il vient.</p><p class="l" lang="en">When we put forward a number or a fact, we say where it comes from.</p></div></li>
+          <li><span class="tr-n" aria-hidden="true">5</span><div><h3><span class="l" lang="fr">On cherche une solution, pas une victoire.</span><span class="l" lang="en">We look for a solution, not a win.</span></h3><p class="l" lang="fr">Le but n’est pas de gagner le débat, mais de trouver ce qui marche pour tout le monde.</p><p class="l" lang="en">The goal is not to win the debate but to find what works for everyone.</p></div></li>
+        </ol>
+        <p class="l rules-note" lang="fr">Qui ne respecte pas ces règles perd sa place à la table. C’est une première version&nbsp;: les membres pourront la modifier par vote dans Forom.</p><p class="l rules-note" lang="en">Anyone who breaks these rules loses their seat at the table. This is a first version: members will be able to change it by voting in Forom.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- METHOD -->
+  <section id="methode" class="rule" aria-labelledby="h-method">
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="l" lang="fr">Notre méthode</span><span class="l" lang="en">Our method</span></div>
+        <h2 id="h-method" class="no-promise">
+          <span class="l" lang="fr"><s>Promettre.</s> Construire.</span>
+          <span class="l" lang="en"><s>Promise.</s> Build.</span>
+        </h2>
+        <p class="l" lang="fr">Les autres partis promettent. Nous, on invente des solutions, on les teste pour vrai, et on garde seulement ce qui fonctionne.</p>
+        <p class="l" lang="en">Other parties make promises. We invent solutions, test them for real, and keep only what works.</p>
+      </div>
+      <ol class="steps">
+        <li>
+          <span class="n">01</span>
+          <h3><span class="l" lang="fr">Inventer</span><span class="l" lang="en">Invent</span></h3>
+          <p class="l" lang="fr">Un vrai problème, une équipe, un prototype. On part du terrain, pas d’un slogan.</p>
+          <p class="l" lang="en">A real problem, a team, a prototype. We start on the ground, not from a slogan.</p>
+        </li>
+        <li>
+          <span class="n">02</span>
+          <h3><span class="l" lang="fr">Tester</span><span class="l" lang="en">Test</span></h3>
+          <p class="l" lang="fr">On essaie la solution à petite échelle, dans une vraie communauté, et on mesure ce qui change.</p>
+          <p class="l" lang="en">We try the solution at a small scale, in a real community, and measure what changes.</p>
+        </li>
+        <li>
+          <span class="n">03</span>
+          <h3><span class="l" lang="fr">Voter</span><span class="l" lang="en">Vote</span></h3>
+          <p class="l" lang="fr">Les membres votent dans Forom pour choisir les projets qu’on pousse plus loin.</p>
+          <p class="l" lang="en">Members vote inside Forom to choose which projects we push further.</p>
+        </li>
+        <li>
+          <span class="n">04</span>
+          <h3><span class="l" lang="fr">Partager</span><span class="l" lang="en">Share</span></h3>
+          <p class="l" lang="fr">Si une solution a du potentiel, on la publie sous licence Creative Commons pour que le monde entier puisse s’en servir.</p>
+          <p class="l" lang="en">If a solution has potential, we publish it under a Creative Commons licence so the whole world can use it.</p>
+        </li>
+      </ol>
+      <div class="cc">
+        <b>CC BY-SA</b>
+        <span class="l" lang="fr">Ce qu’on construit appartient à tout le monde.</span>
+        <span class="l" lang="en">What we build belongs to everyone.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PILLARS -->
+  <section id="piliers" class="rule" aria-labelledby="h-pillars">
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="l" lang="fr">Ce qu’on défend</span><span class="l" lang="en">What we stand for</span></div>
+        <h2 id="h-pillars"><span class="l" lang="fr">Six chantiers pour un Québec en équilibre</span><span class="l" lang="en">Six projects for a balanced Québec</span></h2>
+      </div>
+      <div class="pillars">
+        <article class="pillar edu">
+          <canvas class="pix-icon" width="16" height="16" data-icon="edu" aria-hidden="true"></canvas>
+          <span class="tag"><span class="l" lang="fr">Éducation</span><span class="l" lang="en">Education</span></span>
+          <h3><span class="l" lang="fr">Une réforme massive de l’éducation</span><span class="l" lang="en">A massive education reform</span></h3>
+          <p class="l" lang="fr">L’école doit s’adapter aux jeunes, pas l’inverse. Pour ceux qui décrochent entre 12 et 15 ans, Forom offrira un accès simple au savoir, où qu’ils soient.</p>
+          <p class="l" lang="en">School should adapt to young people, not the other way around. For those who drop out between 12 and 15, Forom will offer easy access to knowledge, wherever they are.</p>
+        </article>
+        <article class="pillar ai">
+          <canvas class="pix-icon" width="16" height="16" data-icon="ai" aria-hidden="true"></canvas>
+          <span class="tag"><span class="l" lang="fr">Intelligence artificielle</span><span class="l" lang="en">Artificial intelligence</span></span>
+          <h3><span class="l" lang="fr">Une IA encadrée par la communauté</span><span class="l" lang="en">AI governed by the community</span></h3>
+          <p class="l" lang="fr">Notre mission principale&nbsp;: toute IA active sur nos terres devra respecter des règles fondamentales écrites et adoptées ensemble.</p>
+          <p class="l" lang="en">Our main mission: every AI operating on our land must follow fundamental rules that the community writes and adopts together.</p>
+        </article>
+        <article class="pillar bot">
+          <canvas class="pix-icon" width="16" height="16" data-icon="bot" aria-hidden="true"></canvas>
+          <span class="tag"><span class="l" lang="fr">Robotique</span><span class="l" lang="en">Robotics</span></span>
+          <h3><span class="l" lang="fr">Des règles solides pour chaque robot</span><span class="l" lang="en">Solid rules for every robot</span></h3>
+          <p class="l" lang="fr">Chaque robot construit au Québec, même à la maison, suivra des règles claires de sécurité et de responsabilité.</p>
+          <p class="l" lang="en">Every robot built in Québec, even at home, will follow clear rules for safety and accountability.</p>
+        </article>
+        <article class="pillar key">
+          <canvas class="pix-icon" width="16" height="16" data-icon="key" aria-hidden="true"></canvas>
+          <span class="tag"><span class="l" lang="fr">Identité</span><span class="l" lang="en">Identity</span></span>
+          <h3><span class="l" lang="fr">La Clé QC</span><span class="l" lang="en">The QC Key</span></h3>
+          <p class="l" lang="fr">Un simple numéro, c’est facile à voler. On veut le remplacer par une clé chiffrée qui appartient à la personne et protège sa vie privée.</p>
+          <p class="l" lang="en">A plain number is easy to steal. We want to replace it with an encrypted key that belongs to the person and protects their privacy.</p>
+        </article>
+        <article class="pillar earth">
+          <canvas class="pix-icon" width="16" height="16" data-icon="earth" aria-hidden="true"></canvas>
+          <span class="tag"><span class="l" lang="fr">Planète</span><span class="l" lang="en">Planet</span></span>
+          <h3><span class="l" lang="fr">Retrouver l’équilibre avec la Terre</span><span class="l" lang="en">Back in balance with the Earth</span></h3>
+          <p class="l" lang="fr">Mesurer notre impact sur le monde et le ramener à l’équilibre, un projet à la fois.</p>
+          <p class="l" lang="en">Measure our impact on the world and bring it back into balance, one project at a time.</p>
+        </article>
+        <article class="pillar all">
+          <canvas class="pix-icon" width="16" height="16" data-icon="all" aria-hidden="true"></canvas>
+          <span class="tag"><span class="l" lang="fr">Accès</span><span class="l" lang="en">Access</span></span>
+          <h3><span class="l" lang="fr">L’accès pour toutes et tous</span><span class="l" lang="en">Access for everyone</span></h3>
+          <p class="l" lang="fr">Chaque personne sur le territoire, du Grand Nord à Montréal, doit avoir accès aux mêmes outils, au même savoir et à la même voix.</p>
+          <p class="l" lang="en">Every person on the territory, from the Far North to Montréal, deserves the same tools, the same knowledge and the same voice.</p>
+        </article>
+      </div>
+
+      <div class="key-zoom" aria-label="Clé QC">
+        <div class="key-card">
+          <span class="tag tag-left"><span class="l" lang="fr">Aujourd’hui</span><span class="l" lang="en">Today</span></span>
+          <s>123 456 789</s>
+          <small class="l" lang="fr">Un numéro fixe, facile à copier et à pirater.</small>
+          <small class="l" lang="en">A fixed number, easy to copy and to hack.</small>
+        </div>
+        <div class="arrow" aria-hidden="true">→</div>
+        <div class="key-card">
+          <span class="tag tag-violet"><span class="l" lang="fr">Clé QC</span><span class="l" lang="en">QC Key</span></span>
+          <code>qc·7f3a·c2e9·•••·e91b</code>
+          <small class="l" lang="fr">Ton identifiant chiffré, que tu contrôles.</small>
+          <small class="l" lang="en">Your encrypted identifier, under your control.</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS: change data-stage (1 Idée, 2 Prototype, 3 Test, 4 Partagé) when a project moves forward -->
+  <section id="projets" class="rule" aria-labelledby="h-projects">
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="l" lang="fr">Projets en cours</span><span class="l" lang="en">Projects in progress</span></div>
+        <h2 id="h-projects"><span class="l" lang="fr">On le montre au lieu de le promettre.</span><span class="l" lang="en">We show it instead of promising it.</span></h2>
+        <p class="l" lang="fr">Chaque projet passe par quatre étapes. Les barres montrent où on en est, et elles avancent seulement quand le travail est fait.</p><p class="l" lang="en">Every project goes through four steps. The bars show where we are, and they only move when the work is done.</p>
+      </div>
+      <div class="projects">
+        <article class="project" data-stage="3">
+          <span class="tag">bloc.forom.xyz</span>
+          <h3><span class="l" lang="fr">Le site du bloc</span><span class="l" lang="en">The bloc’s website</span></h3>
+          <p class="l" lang="fr">La page que tu lis en ce moment. Une version d’essai qu’on améliore avec vos commentaires.</p><p class="l" lang="en">The page you are reading right now. A test version we improve with your feedback.</p>
+          <div class="stage" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+          <ol class="stage-names"><li><span class="l" lang="fr">Idée</span><span class="l" lang="en">Idea</span></li><li>Prototype</li><li>Test</li><li><span class="l" lang="fr">Partagé</span><span class="l" lang="en">Shared</span></li></ol>
+          <p class="next"><b><span class="l" lang="fr">Prochaine étape&nbsp;:</span><span class="l" lang="en">Next step:</span></b> <span class="l" lang="fr">la mettre en ligne sur bloc.forom.xyz.</span><span class="l" lang="en">put it online at bloc.forom.xyz.</span></p>
+        </article>
+        <article class="project" data-stage="2">
+          <span class="tag"><span class="l" lang="fr">Intelligence artificielle</span><span class="l" lang="en">Artificial intelligence</span></span>
+          <h3><span class="l" lang="fr">La charte de l’IA</span><span class="l" lang="en">The AI charter</span></h3>
+          <p class="l" lang="fr">Les règles fondamentales que toute IA devra respecter sur nos terres, écrites et adoptées par la communauté.</p><p class="l" lang="en">The fundamental rules every AI must follow on our land, written and adopted by the community.</p>
+          <div class="stage" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+          <ol class="stage-names"><li><span class="l" lang="fr">Idée</span><span class="l" lang="en">Idea</span></li><li>Prototype</li><li>Test</li><li><span class="l" lang="fr">Partagé</span><span class="l" lang="en">Shared</span></li></ol>
+          <p class="next"><b><span class="l" lang="fr">Prochaine étape&nbsp;:</span><span class="l" lang="en">Next step:</span></b> <span class="l" lang="fr">faire voter les membres sur chaque règle de la <a href="#charte">version 0.1</a>.</span><span class="l" lang="en">have members vote on each rule of <a href="#charte">version 0.1</a>.</span></p>
+        </article>
+        <article class="project" data-stage="1">
+          <span class="tag"><span class="l" lang="fr">Éducation</span><span class="l" lang="en">Education</span></span>
+          <h3><span class="l" lang="fr">Le savoir pour les 12–15 ans</span><span class="l" lang="en">Knowledge for 12 to 15 year olds</span></h3>
+          <p class="l" lang="fr">Un accès simple au savoir avec wizi, le wiki de Forom, pour les jeunes qui quittent l’école entre 12 et 15 ans.</p><p class="l" lang="en">Easy access to knowledge through wizi, Forom’s wiki, for young people who leave school between 12 and 15.</p>
+          <div class="stage" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+          <ol class="stage-names"><li><span class="l" lang="fr">Idée</span><span class="l" lang="en">Idea</span></li><li>Prototype</li><li>Test</li><li><span class="l" lang="fr">Partagé</span><span class="l" lang="en">Shared</span></li></ol>
+          <p class="next"><b><span class="l" lang="fr">Prochaine étape&nbsp;:</span><span class="l" lang="en">Next step:</span></b> <span class="l" lang="fr">choisir les premiers sujets avec des jeunes.</span><span class="l" lang="en">choose the first topics together with young people.</span></p>
+        </article>
+        <article class="project" data-stage="1">
+          <span class="tag"><span class="l" lang="fr">Identité</span><span class="l" lang="en">Identity</span></span>
+          <h3><span class="l" lang="fr">La Clé QC</span><span class="l" lang="en">The QC Key</span></h3>
+          <p class="l" lang="fr">Un identifiant chiffré qui appartient à la personne et remplace le numéro facile à pirater.</p><p class="l" lang="en">An encrypted identifier that belongs to the person and replaces the easy-to-hack number.</p>
+          <div class="stage" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+          <ol class="stage-names"><li><span class="l" lang="fr">Idée</span><span class="l" lang="en">Idea</span></li><li>Prototype</li><li>Test</li><li><span class="l" lang="fr">Partagé</span><span class="l" lang="en">Shared</span></li></ol>
+          <p class="next"><b><span class="l" lang="fr">Prochaine étape&nbsp;:</span><span class="l" lang="en">Next step:</span></b> <span class="l" lang="fr">écrire le concept et le faire vérifier par des experts en sécurité.</span><span class="l" lang="en">write up the concept and have security experts review it.</span></p>
+        </article>
+        <article class="project wide" data-stage="3">
+          <span class="tag"><a href="https://worlds.forom.xyz">worlds.forom.xyz</a></span>
+          <h3><span class="l" lang="fr">Worlds, notre monde de jeu</span><span class="l" lang="en">Worlds, our game world</span></h3>
+          <p class="l" lang="fr">Le monde de jeu de Forom, en phase de test avec une première communauté de joueurs. Une fois les places joueurs remplies, on peut quand même entrer comme observateur (mode fantôme).</p><p class="l" lang="en">Forom’s game world, in its test phase with a first community of players. Once the player spots are full, you can still join as an observer (ghost mode).</p>
+          <div class="slots">
+            <div class="slots-count"><span><b>~20 / 100</b> <span class="l" lang="fr">places joueurs</span><span class="l" lang="en">player spots</span></span><span><span class="l" lang="fr">+ observateurs illimités</span><span class="l" lang="en">+ unlimited observers</span></span></div>
+            <div class="slots-bar" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          </div>
+          <div class="stage" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+          <ol class="stage-names"><li><span class="l" lang="fr">Idée</span><span class="l" lang="en">Idea</span></li><li>Prototype</li><li>Test</li><li><span class="l" lang="fr">Partagé</span><span class="l" lang="en">Shared</span></li></ol>
+          <p class="next"><b><span class="l" lang="fr">Prochaine étape&nbsp;:</span><span class="l" lang="en">Next step:</span></b> <span class="l" lang="fr">accueillir plus de joueurs, jusqu’à la limite de 100.</span><span class="l" lang="en">welcome more players, up to the 100-player limit.</span></p>
+        </article>
+      </div>
+      <div class="projects-cta">
+        <a class="btn btn-ghost" href="https://forom.xyz"><span class="l" lang="fr">Proposer un projet dans Forom</span><span class="l" lang="en">Propose a project in Forom</span></a>
+        <span class="l" lang="fr">Tu as une idée&nbsp;? Si elle a du potentiel, on la construit ensemble.</span><span class="l" lang="en">Got an idea? If it has potential, we build it together.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI CHARTER v0.1 -->
+  <section id="charte" class="rule" aria-labelledby="h-charter">
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="l" lang="fr">Charte de l’IA · version 0.1</span><span class="l" lang="en">AI charter · version 0.1</span></div>
+        <h2 id="h-charter"><span class="l" lang="fr">Les règles fondamentales de l’IA sur nos terres</span><span class="l" lang="en">The fundamental rules for AI on our land</span></h2>
+        <p class="l" lang="fr">Notre quête principale&nbsp;: encadrer l’IA au Québec avec des règles que la communauté écrit ensemble. Voici une première version, écrite pour être débattue. Rien n’est final&nbsp;: les membres de Forom voteront règle par règle.</p><p class="l" lang="en">Our main quest: govern AI in Québec with rules the community writes together. Here is a first version, written to be debated. Nothing is final: Forom members will vote rule by rule.</p>
+        <span class="draft"><i></i><span class="l" lang="fr">Brouillon · vote à venir</span><span class="l" lang="en">Draft · vote coming</span></span>
+      </div>
+      <ol class="charter">
+          <li>
+            <div class="ch-top"><span class="ch-n">Article 01</span><span class="ch-status"><span class="l" lang="fr">Proposée</span><span class="l" lang="en">Proposed</span></span></div>
+            <h3><span class="l" lang="fr">Transparence</span><span class="l" lang="en">Transparency</span></h3>
+            <p class="l" lang="fr">Une IA dit toujours qu’elle est une IA. Personne ne doit croire parler à un humain quand ce n’est pas le cas.</p><p class="l" lang="en">An AI always says it is an AI. Nobody should believe they are talking to a human when they are not.</p>
+          </li>
+          <li>
+            <div class="ch-top"><span class="ch-n">Article 02</span><span class="ch-status"><span class="l" lang="fr">Proposée</span><span class="l" lang="en">Proposed</span></span></div>
+            <h3><span class="l" lang="fr">Un humain décide</span><span class="l" lang="en">A human decides</span></h3>
+            <p class="l" lang="fr">Une décision importante sur une personne (emploi, santé, justice, aide sociale, école) est toujours prise ou validée par un humain.</p><p class="l" lang="en">An important decision about a person (work, health, justice, social aid, school) is always made or approved by a human.</p>
+          </li>
+          <li>
+            <div class="ch-top"><span class="ch-n">Article 03</span><span class="ch-status"><span class="l" lang="fr">Proposée</span><span class="l" lang="en">Proposed</span></span></div>
+            <h3><span class="l" lang="fr">Vie privée</span><span class="l" lang="en">Privacy</span></h3>
+            <p class="l" lang="fr">Une IA n’utilise pas tes données personnelles sans ton accord clair. Tu peux demander qu’elles soient effacées.</p><p class="l" lang="en">An AI does not use your personal data without your clear consent. You can ask for it to be deleted.</p>
+          </li>
+          <li>
+            <div class="ch-top"><span class="ch-n">Article 04</span><span class="ch-status"><span class="l" lang="fr">Proposée</span><span class="l" lang="en">Proposed</span></span></div>
+            <h3><span class="l" lang="fr">Droit à l’explication</span><span class="l" lang="en">Right to an explanation</span></h3>
+            <p class="l" lang="fr">Tu as le droit de savoir, en mots simples, pourquoi une IA a pris une décision qui te touche.</p><p class="l" lang="en">You have the right to know, in plain words, why an AI made a decision that affects you.</p>
+          </li>
+          <li>
+            <div class="ch-top"><span class="ch-n">Article 05</span><span class="ch-status"><span class="l" lang="fr">Proposée</span><span class="l" lang="en">Proposed</span></span></div>
+            <h3><span class="l" lang="fr">Responsabilité</span><span class="l" lang="en">Accountability</span></h3>
+            <p class="l" lang="fr">Une personne ou une organisation est toujours responsable de ce que fait son IA. «&nbsp;C’est la faute de l’algorithme&nbsp;» n’est pas une excuse.</p><p class="l" lang="en">A person or an organisation is always responsible for what its AI does. “The algorithm did it” is not an excuse.</p>
+          </li>
+          <li>
+            <div class="ch-top"><span class="ch-n">Article 06</span><span class="ch-status"><span class="l" lang="fr">Proposée</span><span class="l" lang="en">Proposed</span></span></div>
+            <h3><span class="l" lang="fr">Jamais pour blesser</span><span class="l" lang="en">Never to harm</span></h3>
+            <p class="l" lang="fr">Aucune IA ni aucun robot construit ou utilisé au Québec ne doit être conçu pour blesser un être humain.</p><p class="l" lang="en">No AI and no robot built or used in Québec may be designed to harm a human being.</p>
+          </li>
+          <li>
+            <div class="ch-top"><span class="ch-n">Article 07</span><span class="ch-status"><span class="l" lang="fr">Proposée</span><span class="l" lang="en">Proposed</span></span></div>
+            <h3><span class="l" lang="fr">Égalité</span><span class="l" lang="en">Equality</span></h3>
+            <p class="l" lang="fr">Une IA ne doit pas traiter les gens différemment selon leur origine, leur genre, leur âge ou leur handicap. On la teste pour le vérifier.</p><p class="l" lang="en">An AI must not treat people differently because of their origin, gender, age or disability. It gets tested to check.</p>
+          </li>
+          <li>
+            <div class="ch-top"><span class="ch-n">Article 08</span><span class="ch-status"><span class="l" lang="fr">Proposée</span><span class="l" lang="en">Proposed</span></span></div>
+            <h3><span class="l" lang="fr">IA publique ouverte</span><span class="l" lang="en">Open public AI</span></h3>
+            <p class="l" lang="fr">Quand l’État utilise une IA, ses règles et son code sont publics, sous licence libre.</p><p class="l" lang="en">When the state uses an AI, its rules and its code are public, under an open licence.</p>
+          </li>
+          <li>
+            <div class="ch-top"><span class="ch-n">Article 09</span><span class="ch-status"><span class="l" lang="fr">Proposée</span><span class="l" lang="en">Proposed</span></span></div>
+            <h3><span class="l" lang="fr">Équilibre avec la planète</span><span class="l" lang="en">Balance with the planet</span></h3>
+            <p class="l" lang="fr">Les grandes IA publient l’énergie et l’eau qu’elles consomment, pour qu’on puisse mesurer leur impact.</p><p class="l" lang="en">Large AIs publish the energy and water they use, so we can measure their impact.</p>
+          </li>
+          <li>
+            <div class="ch-top"><span class="ch-n">Article 10</span><span class="ch-status"><span class="l" lang="fr">Proposée</span><span class="l" lang="en">Proposed</span></span></div>
+            <h3><span class="l" lang="fr">Nos langues</span><span class="l" lang="en">Our languages</span></h3>
+            <p class="l" lang="fr">Une IA offerte au public au Québec doit pouvoir servir les gens en français et respecter les langues autochtones du territoire.</p><p class="l" lang="en">An AI offered to the public in Québec must be able to serve people in French and respect the Indigenous languages of the territory.</p>
+          </li>
+      </ol>
+      <div class="projects-cta">
+        <a class="btn btn-ghost" href="https://forom.xyz"><span class="l" lang="fr">Proposer une règle dans Forom</span><span class="l" lang="en">Propose a rule in Forom</span></a>
+        <span class="l" lang="fr">Il manque une règle&nbsp;? Une règle va trop loin&nbsp;? Dis-le-nous.</span><span class="l" lang="en">A rule missing? A rule going too far? Tell us.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROUTE -->
+  <section id="route" class="rule" aria-labelledby="h-route">
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="l" lang="fr">Feuille de route</span><span class="l" lang="en">Roadmap</span></div>
+        <h2 id="h-route"><span class="l" lang="fr">Du Nord vers les villes</span><span class="l" lang="en">From the North to the cities</span></h2>
+        <p class="l" lang="fr">On commence là où personne ne commence. Si une idée marche dans le Grand Nord, elle peut marcher partout.</p>
+        <p class="l" lang="en">We start where nobody else starts. If an idea works in the Far North, it can work anywhere.</p>
+      </div>
+      <figure class="pix-scene">
+        <canvas id="scene" width="192" height="64" role="img" aria-label="Paysage en pixels : aurores boréales et montagnes enneigées de l’Ungava, petits villages aux toits solaires, puis une ville aux toits verts au lever du soleil, reliés par une route."></canvas>
+        <figcaption>
+          <span>Ungava</span>
+          <span><span class="l" lang="fr">Régions</span><span class="l" lang="en">Regions</span></span>
+          <span><span class="l" lang="fr">Villes</span><span class="l" lang="en">Cities</span></span>
+        </figcaption>
+      </figure>
+      <ol class="route">
+        <li>
+          <div class="lat">≈ 49°–62° N</div>
+          <div class="dot"><span></span></div>
+          <div class="body">
+            <h3>Ungava</h3>
+            <p class="l" lang="fr">La circonscription la plus au nord du Québec, et la plus difficile à gagner pour les autres partis. On y arrive pour écouter et construire avec les gens d’ici.</p>
+            <p class="l" lang="en">Québec’s northernmost riding, and the hardest one for other parties to win. We come to listen and to build with the people who live there.</p>
+          </div>
+        </li>
+        <li>
+          <div class="lat"><span class="l" lang="fr">Partout en région</span><span class="l" lang="en">Across the regions</span></div>
+          <div class="dot"><span></span></div>
+          <div class="body">
+            <h3><span class="l" lang="fr">Les petites villes qui souffrent</span><span class="l" lang="en">Small towns that are struggling</span></h3>
+            <p class="l" lang="fr">Fermetures, exode des jeunes, services qui disparaissent. On y lance des projets concrets, testés avec la communauté.</p>
+            <p class="l" lang="en">Closures, young people leaving, services disappearing. We launch concrete projects there, tested with the community.</p>
+          </div>
+        </li>
+        <li>
+          <div class="lat">46,8° N · 45,5° N</div>
+          <div class="dot"><span></span></div>
+          <div class="body">
+            <h3><span class="l" lang="fr">Les grandes villes</span><span class="l" lang="en">The big cities</span></h3>
+            <p class="l" lang="fr">Avec des solutions qui ont fait leurs preuves en région, on arrive à Québec, à Montréal et ailleurs.</p>
+            <p class="l" lang="en">With solutions proven in the regions, we bring them to Québec City, Montréal and beyond.</p>
+          </div>
+        </li>
+        <li>
+          <div class="lat"><span class="l" lang="fr">Octobre 2030</span><span class="l" lang="en">October 2030</span></div>
+          <div class="dot"><span></span></div>
+          <div class="body">
+            <h3><span class="l" lang="fr">L’élection générale de 2030</span><span class="l" lang="en">The 2030 general election</span></h3>
+            <p class="l" lang="fr">Un parti solide, enraciné partout sur le territoire, prêt à prendre sa place.</p>
+            <p class="l" lang="en">A strong party, rooted across the whole territory, ready to take its place.</p>
+          </div>
+        </li>
+      </ol>
+      <div class="countdown">
+        <div class="cd-digits" id="cd-digits" aria-hidden="true"><span>1</span><span>4</span><span>3</span><span>4</span></div>
+        <div class="cd-text">
+          <b><span id="cd-sr" class="sr-only">1434 </span><span class="l" lang="fr">jours</span><span class="l" lang="en">days</span></b>
+          <span class="l" lang="fr">avant l’élection générale québécoise, prévue le 7 octobre 2030.</span><span class="l" lang="en">until the Québec general election, scheduled for October 7, 2030.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOROM -->
+  <section id="forom" class="forom rule" aria-labelledby="h-forom">
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="l" lang="fr">Coopérative sociale</span><span class="l" lang="en">Social co-op</span></div>
+        <h2 id="h-forom"><span class="l" lang="fr">Forom, le moteur du bloc</span><span class="l" lang="en">Forom, the engine of the bloc</span></h2>
+        <p class="l" lang="fr">Bloc Couleur est porté par Forom, une coopérative sociale. Forom est notre fournisseur de communications&nbsp;: c’est par elle qu’on répand les bonnes nouvelles du bloc.</p>
+        <p class="l" lang="en">Bloc Couleur is led by Forom, a social co-op. Forom is our communications provider: it is how we spread the bloc’s good news.</p>
+      </div>
+      <ul class="forom-list">
+        <li>
+          <h3><span class="l" lang="fr">Les bonnes nouvelles</span><span class="l" lang="en">Good news</span></h3>
+          <p class="l" lang="fr">Les projets qui avancent, les solutions qui marchent, les gens qui bâtissent.</p>
+          <p class="l" lang="en">Projects moving forward, solutions that work, people who build.</p>
+        </li>
+        <li>
+          <h3><span class="l" lang="fr">Le savoir ouvert</span><span class="l" lang="en">Open knowledge</span></h3>
+          <p class="l" lang="fr">Un accès facile à la connaissance, pensé d’abord pour les jeunes qui ont quitté l’école.</p>
+          <p class="l" lang="en">Easy access to knowledge, designed first for young people who have left school.</p>
+        </li>
+        <li>
+          <h3><span class="l" lang="fr">Les votes internes</span><span class="l" lang="en">Insider votes</span></h3>
+          <p class="l" lang="fr">Les membres votent sur les projets qu’on propose ensuite à l’humanité.</p>
+          <p class="l" lang="en">Members vote on the projects we then offer to humanity.</p>
+        </li>
+      </ul>
+      <div class="eco">
+        <h3><span class="l" lang="fr">L’écosystème Forom</span><span class="l" lang="en">The Forom ecosystem</span></h3>
+        <ul class="eco-list">
+          <li><a href="https://forom.xyz">forom.xyz</a><span class="l" lang="fr">La coopérative&nbsp;: bonnes nouvelles, savoir ouvert et votes des membres.</span><span class="l" lang="en">The co-op: good news, open knowledge and member votes.</span></li>
+          <li><a href="https://bloc.forom.xyz">bloc.forom.xyz</a><span class="l" lang="fr">Bloc Couleur, le parti violet. Le site que tu lis.</span><span class="l" lang="en">Bloc Couleur, the purple party. The site you are reading.</span></li>
+          <li><a href="https://worlds.forom.xyz">worlds.forom.xyz</a><span class="l" lang="fr">Notre monde de jeu.</span><span class="l" lang="en">Our game world.</span></li>
+          <li><a href="https://wizi.forom.xyz">wizi.forom.xyz</a><span class="l" lang="fr">Le wiki du savoir, ouvert à toutes et tous.</span><span class="l" lang="en">The knowledge wiki, open to everyone.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="rule" aria-labelledby="h-faq">
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="l" lang="fr">Questions</span><span class="l" lang="en">Questions</span></div>
+        <h2 id="h-faq"><span class="l" lang="fr">Les questions qu’on nous pose</span><span class="l" lang="en">The questions people ask us</span></h2>
+      </div>
+      <div class="faq-list">
+        <details open>
+          <summary><span class="l" lang="fr">Vous êtes socialistes, mais vous invitez l’extrême droite&nbsp;?</span><span class="l" lang="en">You are socialists, but you invite the far right?</span></summary>
+          <div class="a"><p class="l" lang="fr">Oui. Nos valeurs sont socialistes, mais on croit que les solutions solides naissent quand des idées opposées se confrontent. La droite apporte la liberté et le progrès, la gauche l’égalité et l’humanité.</p><p class="l" lang="en">Yes. Our values are socialist, but we believe solid solutions come from opposite ideas meeting head on. The right brings liberty and progress, the left brings equality and humanity.</p><p class="l" lang="fr">Tout le monde est le bienvenu à la table, tant que le débat reste respectueux&nbsp;: pas de haine et pas d’attaques contre les personnes. <a href="#regles">Lire les règles de la table</a>.</p><p class="l" lang="en">Everyone is welcome at the table, as long as the debate stays respectful: no hate and no attacks on people. <a href="#regles">Read the rules of the table</a>.</p></div>
+        </details>
+        <details>
+          <summary><span class="l" lang="fr">Pas de promesses… alors pourquoi voter pour vous&nbsp;?</span><span class="l" lang="en">No promises… so why vote for you?</span></summary>
+          <div class="a"><p class="l" lang="fr">Parce qu’on montre des résultats au lieu de faire des promesses. Chaque projet passe par quatre étapes (inventer, tester, voter, partager) et tu peux suivre son avancement sur cette page.</p><p class="l" lang="en">Because we show results instead of making promises. Every project goes through four steps (invent, test, vote, share) and you can follow its progress on this page.</p></div>
+        </details>
+        <details>
+          <summary><span class="l" lang="fr">La Clé QC, est-ce que c’est pour surveiller les gens&nbsp;?</span><span class="l" lang="en">Is the QC Key a way to watch people?</span></summary>
+          <div class="a"><p class="l" lang="fr">Non, c’est le contraire. Aujourd’hui, un simple numéro suffit pour voler une identité. La Clé QC serait un identifiant chiffré qui appartient à la personne et protège sa vie privée.</p><p class="l" lang="en">No, it is the opposite. Today a plain number is enough to steal someone’s identity. The QC Key would be an encrypted identifier that belongs to the person and protects their privacy.</p><p class="l" lang="fr">Le projet en est au stade de l’idée. Comme tout ce qu’on construit, il sera développé en ouvert.</p><p class="l" lang="en">The project is at the idea stage. Like everything we build, it will be developed in the open.</p></div>
+        </details>
+        <details>
+          <summary><span class="l" lang="fr">C’est quoi, Forom&nbsp;?</span><span class="l" lang="en">What is Forom?</span></summary>
+          <div class="a"><p class="l" lang="fr">Forom est une coopérative sociale qui porte le bloc. C’est notre fournisseur de communications, un espace de savoir ouvert et l’endroit où les membres votent sur les projets qu’on pousse vers le monde.</p><p class="l" lang="en">Forom is a social co-op that leads the bloc. It is our communications provider, an open knowledge space and the place where members vote on the projects we push out to the world.</p></div>
+        </details>
+        <details>
+          <summary><span class="l" lang="fr">Pourquoi commencer par l’Ungava&nbsp;?</span><span class="l" lang="en">Why start with Ungava?</span></summary>
+          <div class="a"><p class="l" lang="fr">C’est la circonscription la plus au nord du Québec, et la plus difficile à gagner pour les autres partis. Si une solution fonctionne là-bas, elle peut fonctionner partout.</p><p class="l" lang="en">It is Québec’s northernmost riding, and the hardest one for other parties to win. If a solution works there, it can work anywhere.</p><p class="l" lang="fr">On y va d’abord pour écouter et construire avec les gens qui y vivent. Ensuite viennent les petites villes, puis les grandes.</p><p class="l" lang="en">We go there first to listen and to build with the people who live there. Then come the small towns, then the big cities.</p></div>
+        </details>
+        <details>
+          <summary><span class="l" lang="fr">Pourquoi le violet&nbsp;?</span><span class="l" lang="en">Why purple?</span></summary>
+          <div class="a"><p class="l" lang="fr">Sur le cercle chromatique, le violet naît du mélange du bleu et du rouge. Pour nous, c’est l’équilibre entre l’égalité et la liberté, celui dont on a besoin pour sauver l’humanité.</p><p class="l" lang="en">On the colour wheel, purple is what you get when blue and red mix. For us it is the balance between equality and liberty, the balance we need to save humanity.</p></div>
+        </details>
+        <details>
+          <summary><span class="l" lang="fr">C’est quoi, le solarpunk&nbsp;?</span><span class="l" lang="en">What is solarpunk?</span></summary>
+          <div class="a"><p class="l" lang="fr">Un mouvement qui imagine un futur lumineux, vert et juste, où la technologie sert les gens et la planète. C’est notre façon de voir l’avenir&nbsp;: optimiste, et à construire ensemble.</p><p class="l" lang="en">A movement that imagines a bright, green and fair future, where technology serves people and the planet. It is how we see what comes next: optimistic, and ours to build together.</p></div>
+        </details>
+        <details>
+          <summary><span class="l" lang="fr">Comment je peux participer&nbsp;?</span><span class="l" lang="en">How can I take part?</span></summary>
+          <div class="a"><p class="l" lang="fr">Rejoins Forom pour suivre les projets du bloc. Les membres pourront bientôt voter et proposer leurs propres idées.</p><p class="l" lang="en">Join Forom to follow the bloc’s projects. Members will soon be able to vote and propose their own ideas.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- JOIN -->
+  <section id="joindre" class="join" aria-labelledby="h-join">
+    <div class="wrap">
+      <h2 id="h-join"><span class="l" lang="fr">Ta place est ici.</span><span class="l" lang="en">There’s a place for you.</span></h2>
+      <p class="l" lang="fr">De gauche ou de droite, du Nord ou de la ville&nbsp;: si tu veux construire plutôt que promettre, viens bâtir le bloc avec nous.</p>
+      <p class="l" lang="en">Left or right, from the North or the city: if you would rather build than promise, come build the bloc with us.</p>
+      <a class="btn" href="https://forom.xyz"><span class="l" lang="fr">Rejoindre via Forom</span><span class="l" lang="en">Join through Forom</span></a>
+    </div>
+  </section>
+</main>
+
+<aside class="owl" aria-label="Harfi">
+  <div class="owl-bubble" id="owl-bubble">
+    <button class="owl-close" type="button" id="owl-close" aria-label="Fermer">×</button>
+    <p id="owl-text"><b>Harfi</b><br>Salut&nbsp;! Je suis le harfang des neiges, l’oiseau emblème du Québec. Je te fais visiter le bloc.</p>
+  </div>
+  <button class="owl-btn" type="button" id="owl-btn" aria-expanded="true" aria-controls="owl-bubble" aria-label="Harfi, le harfang des neiges">
+    <canvas id="owl" width="28" height="22"></canvas>
+  </button>
+</aside>
+
+<footer>
+  <div class="wrap">
+    <span>Bloc Couleur · <span class="l" lang="fr">Le parti violet du Québec</span><span class="l" lang="en">Québec’s purple party</span></span>
+    <span><span class="l" lang="fr">Contenu sous licence CC BY-SA 4.0 · Version d’essai</span><span class="l" lang="en">Content under CC BY-SA 4.0 · Test version</span></span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var buttons = document.querySelectorAll('.lang button');
+  function setLang(lang) {
+    root.setAttribute('data-lang', lang);
+    root.setAttribute('lang', lang);
+    buttons.forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.set === lang)); });
+    try { localStorage.setItem('bloc-lang', lang); } catch (e) {}
+  }
+  var saved = null;
+  try { saved = localStorage.getItem('bloc-lang'); } catch (e) {}
+  setLang(saved === 'en' ? 'en' : 'fr');
+  buttons.forEach(function (b) { b.addEventListener('click', function () { setLang(b.dataset.set); }); });
+})();
+</script>
+
+<script>
+/* Pixel art: roadmap landscape + pillar icons, drawn pixel by pixel. */
+(function () {
+  function hex(h) { h = h.trim().replace('#', ''); if (h.length === 3) h = h.split('').map(function (c) { return c + c; }).join(''); var n = parseInt(h, 16); return [n >> 16 & 255, n >> 8 & 255, n & 255]; }
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- Landscape: Ungava → regions → cities ---------- */
+  var scene = document.getElementById('scene');
+  if (scene) {
+    var W = 192, H = 64, ctx = scene.getContext('2d');
+    var img = ctx.createImageData(W, H), d = img.data;
+    var C = { night:'#120a24', indigo:'#24154a', violet:'#45237d', purple:'#6b35a8', rose:'#b0559e', gold:'#f2b33d', light:'#ffe08a',
+      aur:'#5fe0a0', teal:'#2fb59a', snow:'#eef0ff', snowS:'#a9b1e0', rock:'#4b3f72', rockD:'#33285a', spruce:'#1f5c3e', spruceD:'#163f2c',
+      leaf:'#3fa565', leafL:'#7fd38a', ground:'#24402f', groundD:'#183024', wood:'#7a4b3a', red:'#d9443f', panel:'#2d68d8', panelL:'#73a4ff',
+      bld:'#2a2147', bldL:'#3a2e63', win:'#ffd76a' };
+    for (var k in C) C[k] = hex(C[k]);
+    var B = [0, 8, 2, 10, 12, 4, 14, 6, 3, 11, 1, 9, 15, 7, 13, 5];
+    var bay = function (x, y) { return (B[(y & 3) * 4 + (x & 3)] + 0.5) / 16; };
+    var hash = function (x, y) { var h = (x * 374761393 + y * 668265263) | 0; h = Math.imul(h ^ (h >>> 13), 1274126177); return ((h ^ (h >>> 16)) >>> 0) / 4294967295; };
+    var px = function (x, y, c) { x = Math.round(x); y = Math.round(y); if (x < 0 || y < 0 || x >= W || y >= H) return; var i = (y * W + x) * 4; d[i] = c[0]; d[i + 1] = c[1]; d[i + 2] = c[2]; d[i + 3] = 255; };
+    var line = function (x0, y0, x1, y1, c) {
+      x0 = Math.round(x0); y0 = Math.round(y0); x1 = Math.round(x1); y1 = Math.round(y1);
+      var dx = Math.abs(x1 - x0), sx = x0 < x1 ? 1 : -1, dy = -Math.abs(y1 - y0), sy = y0 < y1 ? 1 : -1, e = dx + dy;
+      for (;;) { px(x0, y0, c); if (x0 === x1 && y0 === y1) break; var e2 = 2 * e; if (e2 >= dy) { e += dy; x0 += sx; } if (e2 <= dx) { e += dx; y0 += sy; } }
+    };
+    var skyRamp = [C.night, C.indigo, C.violet, C.purple, C.rose, C.gold];
+    var skyV = function (x, y) { return Math.min(0.999, Math.max(0, (y / H) * 0.95 + (x / W) * 0.55 - 0.12)); };
+    var ground = function (x) { return Math.round(46 + 2 * Math.sin(x * 0.07) + 1.5 * Math.sin(x * 0.19 + 1)); };
+    var north = function (x) { return x < 66 ? 1 : x > 80 ? 0 : (80 - x) / 14; };
+    var road = function (x) { return Math.round(58 + 2 * Math.sin(x * 0.045 + 0.5)); };
+    var peaks = [[12, 17], [36, 23], [58, 19], [82, 29], [100, 34]];
+
+    function spruce(x, h, snowy) {
+      var base = ground(x);
+      px(x, base - 1, C.wood);
+      for (var i = 0; i < h; i++) {
+        var y = base - 2 - i, half = Math.max(0, Math.floor((h - i) * 0.4) - (i % 2 && i > 1 ? 1 : 0));
+        for (var xx = x - half; xx <= x + half; xx++) px(xx, y, xx > x ? C.spruceD : C.spruce);
+        if (snowy && i % 2 === 0 && half > 0) px(x - half, y, C.snow);
+      }
+    }
+    function house(x, body) {
+      var top = ground(x + 5) - 6;
+      for (var xx = x; xx <= x + 10; xx++) for (var y = top; y < ground(xx); y++) px(xx, y, body);
+      px(x + 2, top + 1, C.win); px(x + 3, top + 1, C.win); px(x + 2, top + 2, C.win); px(x + 3, top + 2, C.win);
+      for (var dy = 2; dy < 6; dy++) { px(x + 7, top + dy, C.bld); px(x + 8, top + dy, C.bld); }
+      for (var r = 0; r < 6; r++) for (var rx = x - 1 + r; rx <= x + 11 - r; rx++)
+        px(rx, top - 1 - r, r === 0 ? C.rockD : (rx % 3 === 0 ? C.panelL : C.panel));
+    }
+
+    var draw = function (t, frame) {
+      var x, y;
+      for (y = 0; y < H; y++) for (x = 0; x < W; x++) {
+        var f = skyV(x, y) * (skyRamp.length - 1), i = f | 0;
+        if (f - i > bay(x, y)) i++;
+        px(x, y, skyRamp[Math.min(i, 5)]);
+      }
+      for (y = 0; y < 34; y++) for (x = 0; x < 120; x++)
+        if (hash(x, y) < 0.022 && skyV(x, y) < 0.33 && ((hash(y, x) * 9 + frame) | 0) % 11 !== 0) px(x, y, C.snow);
+      for (x = 0; x < 120; x++) {
+        var fade = x < 78 ? 1 : Math.max(0, 1 - (x - 78) / 40);
+        var yc = 13 + 3.5 * Math.sin(x * 0.085 + t * 0.7) + 1.8 * Math.sin(x * 0.23 - t * 0.5);
+        for (var dy = -9; dy <= 2; dy++) {
+          var w = (dy <= 0 ? 1 + dy / 10 : 1 - dy / 3) * fade * 0.95, ay = Math.round(yc + dy);
+          if (w > bay(x, ay)) px(x, ay, dy >= -2 ? C.aur : dy >= -6 ? C.teal : C.rose);
+        }
+      }
+      for (y = 21; y <= 45; y++) for (x = 154; x <= 178; x++) {
+        var r = Math.hypot(x - 166, y - 33);
+        if (r <= 11 && !(r > 10 && bay(x, y) < 0.5)) px(x, y, r < 7 ? C.light : C.gold);
+      }
+      for (x = 0; x < 116; x++) {
+        var best = 99, pk = null;
+        peaks.forEach(function (p) { var my = p[1] + Math.abs(x - p[0]) * 0.85; if (my < best) { best = my; pk = p; } });
+        for (y = Math.round(best); y < 50; y++) {
+          var cap = y < pk[1] + 6 + ((hash(x, 7) * 2) | 0), shade = x > pk[0];
+          px(x, y, cap ? (shade ? C.snowS : C.snow) : (shade ? C.rockD : C.rock));
+        }
+      }
+      for (x = 0; x < W; x++) {
+        var gy = ground(x);
+        for (y = gy; y < H; y++) {
+          var sn = north(x) > bay(x, y);
+          if (y >= 54) px(x, y, sn ? C.snowS : C.groundD);
+          else px(x, y, sn ? (y < gy + 3 ? C.snow : C.snowS) : (y === gy ? C.leafL : y < gy + 2 ? C.leaf : C.ground));
+        }
+        var ry = road(x);
+        px(x, ry - 1, C.rockD); px(x, ry, C.rock); px(x, ry + 1, C.rockD);
+        if (x % 5 < 3) px(x, ry, C.gold);
+      }
+      [[5, 9], [19, 12], [27, 8], [46, 11], [63, 10]].forEach(function (s) { spruce(s[0], s[1], true); });
+      [[73, 9], [91, 7], [131, 8]].forEach(function (s) { spruce(s[0], s[1], false); });
+      house(78, C.red); house(94, C.purple); house(110, C.wood);
+      var tx = 126, tg = ground(tx), hub = tg - 23;
+      for (y = hub; y < tg; y++) { px(tx, y, C.snow); if (y > hub + 8) px(tx + 1, y, C.snowS); }
+      for (var b = 0; b < 3; b++) { var a = t * 1.6 + b * 2.094; line(tx, hub, tx + Math.cos(a) * 9, hub + Math.sin(a) * 9, C.snow); }
+      px(tx, hub, C.gold);
+      [[136, 8, 13], [145, 10, 21], [156, 7, 15], [164, 11, 27], [176, 8, 17], [185, 7, 23]].forEach(function (bd, n) {
+        var bx = bd[0], bw = bd[1], top = 53 - bd[2], body = n % 2 ? C.bldL : C.bld;
+        for (var yy = top; yy < 54; yy++) for (var xx = bx; xx < bx + bw; xx++) px(xx, yy, xx === bx ? C.rock : body);
+        for (var wy = top + 3; wy < 51; wy += 3) for (var wx = bx + 2; wx < bx + bw - 1; wx += 2) px(wx, wy, hash(wx, wy) < 0.55 ? C.win : C.night);
+        for (var gx = bx; gx < bx + bw; gx++) { px(gx, top, C.leaf); if (n !== 3 && hash(gx, top) < 0.5) px(gx, top - 1, C.leafL); }
+        if (n === 3) for (var sx = bx + 2; sx < bx + 8; sx++) { px(sx, top - 1, C.panel); if (sx % 2) px(sx, top - 2, C.panelL); }
+        if (n === 1) { px(bx + 6, top - 1, C.wood); px(bx + 6, top - 2, C.wood); [-1, 0, 1].forEach(function (o) { px(bx + 6 + o, top - 3, C.leaf); }); px(bx + 6, top - 4, C.leafL); }
+      });
+      var fy = road(8);
+      for (y = fy - 9; y < fy - 1; y++) px(8, y, C.snow);
+      [C.panel, C.purple, C.purple, C.purple, C.red].forEach(function (c, i) { for (var r2 = 0; r2 < 3; r2++) px(9 + i, fy - 9 + r2, c); });
+      ctx.putImageData(img, 0, 0);
+    };
+
+    var frame = 0, timer = null;
+    draw(0, 0);
+    if (!reduce && 'IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting && !timer) timer = setInterval(function () { frame++; draw(frame / 8, frame); }, 125);
+        else if (!entries[0].isIntersecting && timer) { clearInterval(timer); timer = null; }
+      }).observe(scene);
+    }
+  }
+
+
+  /* ---------- Hero: pixel colour wheel (cercle chromatique) ---------- */
+  var chroma = document.getElementById('chroma'), chromaFrame = 0;
+  var SEGS = (function () {
+    var bottom = ['#EC6A2E', '#F5922A', '#F8B630', '#F6D83A', '#A8CF3A', '#3FAE55', '#1F9A8A'];
+    var list = [[-112.5, -67.5, '#2D68D8', 1], [-67.5, -22.5, '#4A47C2', 0], [-22.5, 22.5, '#6B34B0', 1], [22.5, 67.5, '#A33494', 0], [67.5, 112.5, '#D9443F', 1]];
+    var step = 135 / bottom.length;
+    bottom.forEach(function (c, i) { list.push([112.5 + i * step, 112.5 + (i + 1) * step, c, 0]); });
+    return list.map(function (s) { return [s[0], s[1], hex(s[2]), s[3]]; });
+  })();
+  function shade(c, f) { return f > 0 ? c.map(function (v) { return Math.round(v + (255 - v) * f); }) : c.map(function (v) { return Math.round(v * (1 + f)); }); }
+  function drawChroma() { drawWheel(chroma, null, true); }
+  function drawWheel(cvs, marker, sparkle, inkOverride) {
+    if (!cvs) return;
+    var S = 56, ctx = cvs.getContext('2d'), im = ctx.createImageData(S, S), d = im.data;
+    var ink = hex(inkOverride || getComputedStyle(document.documentElement).getPropertyValue('--ink') || '#1D1430');
+    var filled = new Uint8Array(S * S), RIN = 13, R = 22, RPOP = 25;
+    var set = function (x, y, c) { var i = (y * S + x) * 4; d[i] = c[0]; d[i + 1] = c[1]; d[i + 2] = c[2]; d[i + 3] = 255; };
+    for (var y = 0; y < S; y++) for (var x = 0; x < S; x++) {
+      var dx = x + 0.5 - 28, dy = y + 0.5 - 28, r = Math.hypot(dx, dy);
+      if (r < RIN) continue;
+      var a = Math.atan2(dx, -dy) * 180 / Math.PI; if (a < -112.5) a += 360;
+      for (var k = 0; k < SEGS.length; k++) {
+        var sg = SEGS[k]; if (a < sg[0] || a >= sg[1]) continue;
+        var out = sg[3] ? RPOP : R;
+        if (r > out) break;
+        var edge = Math.min(a - sg[0], sg[1] - a) * Math.PI / 180 * r;
+        if (edge < 0.7) break;
+        var c = sg[2], lit = (-dx - dy) / (r * 1.414);
+        if (r > out - 2.2 && lit > 0.2) c = shade(c, 0.35);
+        else if (r < RIN + 2) c = shade(c, -0.28);
+        set(x, y, c); filled[y * S + x] = 1; break;
+      }
+    }
+    for (y = 0; y < S; y++) for (x = 0; x < S; x++) {
+      if (filled[y * S + x]) continue;
+      var near = (x > 0 && filled[y * S + x - 1]) || (x < S - 1 && filled[y * S + x + 1]) || (y > 0 && filled[(y - 1) * S + x]) || (y < S - 1 && filled[(y + 1) * S + x]);
+      if (near) set(x, y, ink);
+    }
+    if (marker != null) {
+      var ang = marker * Math.PI / 180, ux = Math.sin(ang), uy = -Math.cos(ang), white = [255, 255, 255];
+      for (var t = 0; t <= 11; t += 0.5) set(Math.floor(28 + ux * t), Math.floor(28 + uy * t), ink);
+      set(27, 27, ink); set(28, 27, ink); set(27, 28, ink); set(28, 28, ink);
+      var mx = Math.round(28 + ux * 17.5) - 2, my = Math.round(28 + uy * 17.5) - 2;
+      for (var yy = 0; yy < 5; yy++) for (var xx = 0; xx < 5; xx++) set(mx + xx, my + yy, (xx === 0 || yy === 0 || xx === 4 || yy === 4) ? ink : white);
+    }
+    var spots = [[33, 6], [22, 8], [38, 9]], on = reduce ? 0 : Math.floor(chromaFrame / 6) % 4;
+    if (sparkle && on < 3) { var sp = spots[on], w = [255, 255, 255]; set(sp[0], sp[1], w); set(sp[0] - 1, sp[1], w); set(sp[0] + 1, sp[1], w); set(sp[0], sp[1] - 1, w); set(sp[0], sp[1] + 1, w); }
+    ctx.putImageData(im, 0, 0);
+  }
+  window.blocWheel = drawWheel;
+  drawChroma();
+  if (chroma && !reduce) setInterval(function () { chromaFrame++; if (chromaFrame % 6 === 0) drawChroma(); }, 125);
+
+  /* ---------- Pillar icons (16×16, colours follow the page theme) ---------- */
+  var ICONS = {
+    edu: ["................","................",".kkkkkk..kkkkkk.","kwwwwwwkkwwwwwwk","kwmmmmwkkwmmmmwk","kwwwwwwkkwwwwwwk","kwmmmmwkkwmmmwwk","kwwwwwwkkwwwwwwk","kwmmmwwkkwmmmmwk","kwwwwwwkkwwwwwwk","kwmmmmwkkwmmwwwk","kwwwwwwkkwwwwwwk","kkkkkkkkkkkkkkkk",".ssssss..ssssss.","................","................"],
+    ai: ["................","....r.r..r.r....","....r.r..r.r....","...kkkkkkkkkk...","...krrrrrrrrk...","rr.krwwwwwwrk.rr","...krwvvvvwrk...","rr.krwvwwvwrk.rr","rr.krwvwwvwrk.rr","...krwvvvvwrk...","rr.krwwwwwwrk.rr","...krrrrrrrrk...","...kkkkkkkkkk...","....r.r..r.r....","....r.r..r.r....","................"],
+    bot: [".......ss.......",".......kk.......","...kkkkkkkkkk...","...kwwwwwwwwk...","...kwrrwwrrwk...","...kwrrwwrrwk...","...kwwwwwwwwk...","...kwwvvvvwwk...","...kkkkkkkkkk...",".....kkkkkk.....","..kkkvvvvvvkkk..",".k..kvvssvvk..k.",".k..kvvvvvvk..k.","....kvvvvvvk....","....kk....kk....","....kk....kk...."],
+    key: ["................","................","................","................","...kkkk.........","..kllllk........",".kllwwllk.......",".klw..wlkkkkkkk.",".klw..wllllllllk",".kllwwllkkklkklk","..kllllk...kk.kk","...kkkk.........","................","................","................","................"],
+    earth: ["................",".....kkkkkk.....","...kkrrggrrkk...","..krrrgggrrrrk..",".krrrggggrrggrk.",".krrgggggrrggrk.","krrrrggggrrrrrrk","krrrrrggrrrrggrk","krrrrrrrrrrgggrk","krrggrrrrrggggrk",".krgggrrrrrgggk.",".krrggrrrrrrgrk.","..krrrrrrrrrrk..","...kkrrrrrrkk...",".....kkkkkk.....","................"],
+    all: ["................","................",".......vv.......","......vvvv......","..ll..vvvv..rr..",".llll..vv..rrrr.",".llll......rrrr.","..ll..vvvv..rr..",".llllvvvvvvrrrr.","llllllvvvvrrrrrr","llllllvvvvrrrrrr","llllvvvvvvvvrrrr","llllvvvvvvvvrrrr","................","................","................"]
+  };
+  var TOK = { k: '--ink', w: '--surface', m: '--muted', v: '--violet', l: '--left', r: '--right', g: '--leaf', s: '--sun' };
+  function drawIcons() {
+    var cs = getComputedStyle(document.documentElement), col = {};
+    for (var t in TOK) col[t] = cs.getPropertyValue(TOK[t]).trim();
+    document.querySelectorAll('.pix-icon').forEach(function (cv) {
+      var grid = ICONS[cv.dataset.icon]; if (!grid) return;
+      var c = cv.getContext('2d'); c.clearRect(0, 0, 16, 16);
+      grid.forEach(function (row, y) { for (var x = 0; x < 16; x++) { var ch = row[x]; if (ch && ch !== '.') { c.fillStyle = col[ch]; c.fillRect(x, y, 1, 1); } } });
+    });
+  }
+  drawIcons();
+  var redrawThemed = function () { drawIcons(); drawChroma(); };
+  try { window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', redrawThemed); } catch (e) {}
+  new MutationObserver(redrawThemed).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+})();
+</script>
+
+<script>
+/* Project stage bars + Harfi the snowy owl guide */
+(function () {
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var root = document.documentElement;
+  var lang = function () { return root.getAttribute('data-lang') === 'en' ? 'en' : 'fr'; };
+
+  document.querySelectorAll('.project').forEach(function (p) {
+    var st = Math.max(1, Math.min(4, parseInt(p.dataset.stage, 10) || 1));
+    p.querySelectorAll('.stage i').forEach(function (seg, i) { if (i < st) seg.classList.add('on'); if (i === st - 1) seg.classList.add('now'); });
+    var li = p.querySelectorAll('.stage-names li')[st - 1]; if (li) li.setAttribute('aria-current', 'step');
+  });
+
+  /* ----- sprite: left halves are mirrored into a symmetric 20×22 owl ----- */
+  var HALF = ["......oooo","....oowwww","...owwwwww","..owwwkwww",".owwwwwwww",".owsssswww","owsyyyysww","owsywpysww","owsyppysww","owsyyyysww",
+              "owwsssswwb","owwwwwwwwb","oswkwwwkww","osswwkwwww","oskwwwwwkw","osswkwwwww","oswwwwwkww",".osskwwwww",".osswwwwww","..osswwwww","...ooooooo","....kk.kk."];
+  var BLINK = { 6: "owssssssww", 7: "owskkkksww", 8: "owssssssww", 9: "owssssssww" };
+  var WING = { 9: "...o", 10: "..os", 11: ".osw", 12: "osww", 13: "osk.", 14: "os..", 15: "o..." };
+  var PAL = { o: '#1D1430', w: '#FFFFFF', s: '#C9CDE3', k: '#3A3550', y: '#F6C531', p: '#1D1430', b: '#3A3550' };
+  var mirror = function (r) { return r + r.split('').reverse().join(''); };
+  var cv = document.getElementById('owl'), ctx = cv && cv.getContext('2d');
+  function drawOwl(blink, flap) {
+    if (!ctx) return;
+    ctx.clearRect(0, 0, 28, 22);
+    HALF.forEach(function (h, y) {
+      var row = mirror(blink && BLINK[y] ? BLINK[y] : h);
+      for (var x = 0; x < 20; x++) { var c = PAL[row[x]]; if (c) { ctx.fillStyle = c; ctx.fillRect(x + 4, y, 1, 1); } }
+    });
+    if (flap) for (var y in WING) {
+      var w = WING[y];
+      for (var i = 0; i < 4; i++) {
+        var c1 = PAL[w[i]]; if (c1) { ctx.fillStyle = c1; ctx.fillRect(i, +y - 2, 1, 1); }
+        var c2 = PAL[w[3 - i]]; if (c2) { ctx.fillStyle = c2; ctx.fillRect(24 + i, +y - 2, 1, 1); }
+      }
+    }
+  }
+  drawOwl(false, false);
+
+  /* ----- what Harfi says in each section ----- */
+  var MSG = {
+    fr: {
+      top: 'Salut&nbsp;! Je suis le harfang des neiges, l’oiseau emblème du Québec. Je te fais visiter le bloc.',
+      pourquoi: 'Un nouveau monde arrive. Ici, on t’explique pourquoi on se lance.',
+      equilibre: 'Bleu + rouge = violet. Toutes les idées sont invitées à la même table.',
+      quiz: 'Bleu, rouge ou violet&nbsp;? Fais le quiz et découvre ta couleur.',
+      regles: 'Ici, on peut être en désaccord. Mais on se respecte, toujours.',
+      charte: 'Notre quête principale&nbsp;: des règles claires pour l’IA. Voici la version 0.1.',
+      methode: 'Ici, pas de promesses. On invente, on teste, on vote et on partage.',
+      piliers: 'Six chantiers. Mon préféré&nbsp;: le savoir pour tous les jeunes.',
+      projets: 'Regarde les barres&nbsp;: elles avancent seulement quand le travail est fait.',
+      route: 'Je viens du Grand Nord, comme le bloc&nbsp;! On commence par l’Ungava.',
+      forom: 'Forom, c’est la coop qui fait voler le bloc.',
+      faq: 'Une question&nbsp;? Les réponses sont juste ici.',
+      joindre: 'À toi de jouer&nbsp;! Ta place est ici.'
+    },
+    en: {
+      top: 'Hi! I am the snowy owl, Québec’s official bird. Let me show you around the bloc.',
+      pourquoi: 'A new world is coming. This is why we are starting.',
+      equilibre: 'Blue + red = purple. Every idea is invited to the same table.',
+      quiz: 'Blue, red or purple? Take the quiz and find your colour.',
+      regles: 'Here we can disagree. But we always respect each other.',
+      charte: 'Our main quest: clear rules for AI. Here is version 0.1.',
+      methode: 'No promises here. We invent, we test, we vote and we share.',
+      piliers: 'Six projects. My favourite: knowledge for every young person.',
+      projets: 'Watch the bars: they only move when the work is done.',
+      route: 'I come from the Far North, just like the bloc! We start with Ungava.',
+      forom: 'Forom is the co-op that keeps the bloc flying.',
+      faq: 'Got a question? The answers are right here.',
+      joindre: 'Your turn! There is a place for you.'
+    }
+  };
+  var bubble = document.getElementById('owl-bubble'), text = document.getElementById('owl-text');
+  var btn = document.getElementById('owl-btn'), closeBtn = document.getElementById('owl-close');
+  var current = 'top', flapTicks = 0, tick = 0;
+  function render() {
+    text.innerHTML = '<b>Harfi</b><br>' + MSG[lang()][current];
+    closeBtn.setAttribute('aria-label', lang() === 'en' ? 'Close' : 'Fermer');
+    btn.setAttribute('aria-label', lang() === 'en' ? 'Harfi the snowy owl' : 'Harfi, le harfang des neiges');
+  }
+  var narrow = window.matchMedia('(max-width: 560px)'), hideTimer = null;
+  function autoHide() {
+    clearTimeout(hideTimer);
+    if (!bubble.hidden) hideTimer = setTimeout(function () { bubble.hidden = true; btn.setAttribute('aria-expanded', 'false'); }, narrow.matches ? 6000 : 9000);
+  }
+  function show(open) {
+    bubble.hidden = !open; btn.setAttribute('aria-expanded', String(open));
+    try { localStorage.setItem('bloc-owl', open ? 'open' : 'closed'); } catch (e) {}
+    if (open) autoHide();
+  }
+  var saved = null; try { saved = localStorage.getItem('bloc-owl'); } catch (e) {}
+  render(); if (saved === 'closed') show(false); else autoHide();
+  var userClosed = saved === 'closed';
+  closeBtn.addEventListener('click', function () { userClosed = true; show(false); });
+  btn.addEventListener('click', function () { userClosed = !bubble.hidden; show(bubble.hidden); flapTicks = 8; });
+  new MutationObserver(render).observe(root, { attributes: true, attributeFilter: ['data-lang'] });
+
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        var key = en.target.id || 'top';
+        if (key !== current && MSG.fr[key]) {
+          current = key; render(); flapTicks = 8;
+          autoHide();
+        }
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    document.querySelectorAll('main > section').forEach(function (s) { io.observe(s); });
+  }
+
+  if (!reduce) setInterval(function () {
+    tick++;
+    var blink = tick % 32 === 0 || tick % 32 === 1;
+    var flap = flapTicks > 0 && flapTicks-- % 2 === 0;
+    drawOwl(blink, flap);
+  }, 125);
+})();
+</script>
+
+<script>
+/* Quiz: où es-tu sur le cercle ? */
+(function () {
+  var cv = document.getElementById('quiz-wheel'), card = document.getElementById('quiz-card'), readout = document.getElementById('quiz-readout');
+  if (!cv || !card || !window.blocWheel) return;
+  var root = document.documentElement, reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var lang = function () { return root.getAttribute('data-lang') === 'en' ? 'en' : 'fr'; };
+  var Q = [
+    { fr: { t: 'Économie', a: 'L’État doit réduire les écarts de richesse entre les gens.', b: 'Chacun doit être libre de réussir et de garder ce qu’il gagne.' },
+      en: { t: 'Economy', a: 'The state should shrink the wealth gap between people.', b: 'Everyone should be free to succeed and keep what they earn.' } },
+    { fr: { t: 'Éducation', a: 'La même école de qualité, gratuite, pour tout le monde.', b: 'Les familles doivent pouvoir choisir l’école et la façon d’apprendre.' },
+      en: { t: 'Education', a: 'The same quality school, free, for everyone.', b: 'Families should be able to choose the school and the way to learn.' } },
+    { fr: { t: 'Technologie', a: 'Des règles fortes pour protéger les gens contre les abus de l’IA.', b: 'Laisser les gens innover librement, sans trop de règles.' },
+      en: { t: 'Technology', a: 'Strong rules to protect people from AI abuse.', b: 'Let people innovate freely, without too many rules.' } },
+    { fr: { t: 'Communauté', a: 'La communauté doit décider ensemble de ce qui est bon pour tous.', b: 'Chaque personne sait mieux que quiconque ce qui est bon pour elle.' },
+      en: { t: 'Community', a: 'The community should decide together what is good for everyone.', b: 'Each person knows better than anyone what is good for them.' } },
+    { fr: { t: 'Planète', a: 'Protéger la planète, même si ça limite certaines libertés.', b: 'Le progrès et l’innovation vont régler les problèmes de la planète.' },
+      en: { t: 'Planet', a: 'Protect the planet, even if it limits some freedoms.', b: 'Progress and innovation will solve the planet’s problems.' } }
+  ];
+  var MIXL = 'color-mix(in srgb, var(--left) 50%, var(--violet))', MIXR = 'color-mix(in srgb, var(--right) 50%, var(--violet))';
+  var ZONES = [
+    { c: 'var(--left)', fr: { n: 'Bleu profond', t: 'Tu tiens d’abord à l’égalité et à l’humanité. Ta voix rappelle au bloc que personne ne doit être laissé derrière.' },
+      en: { n: 'Deep blue', t: 'Equality and humanity come first for you. Your voice reminds the bloc that nobody gets left behind.' } },
+    { c: MIXL, fr: { n: 'Bleu-violet', t: 'Tu penches vers l’égalité, mais tu écoutes l’autre côté. Tu es tout près du centre du cercle.' },
+      en: { n: 'Blue-violet', t: 'You lean towards equality, but you listen to the other side. You are close to the centre of the circle.' } },
+    { c: 'var(--violet)', fr: { n: 'Violet', t: 'Tu cherches déjà l’équilibre entre l’égalité et la liberté. Tu es au cœur du bloc.' },
+      en: { n: 'Purple', t: 'You already look for balance between equality and liberty. You are at the heart of the bloc.' } },
+    { c: MIXR, fr: { n: 'Rouge-violet', t: 'Tu penches vers la liberté et le progrès, mais tu écoutes l’autre côté. Tu es tout près du centre du cercle.' },
+      en: { n: 'Red-violet', t: 'You lean towards liberty and progress, but you listen to the other side. You are close to the centre of the circle.' } },
+    { c: 'var(--right)', fr: { n: 'Rouge vif', t: 'Tu tiens d’abord à la liberté et au progrès. Ta voix rappelle au bloc que chacun doit pouvoir bâtir et avancer.' },
+      en: { n: 'Bright red', t: 'Liberty and progress come first for you. Your voice reminds the bloc that everyone should be free to build and move forward.' } }
+  ];
+  var UI = {
+    fr: { q: 'Question', start: 'Réponds aux questions pour faire bouger l’aiguille.', now: 'Pour l’instant&nbsp;:', you: 'Ta couleur&nbsp;:',
+      scale: ['← Idée A', 'Les deux', 'Idée B →'], aria: ['Tout à fait d’accord avec A', 'Plutôt A', 'Les deux', 'Plutôt B', 'Tout à fait d’accord avec B'],
+      back: '← Question précédente', result: 'Résultat', common: 'Peu importe ta couleur, ta place est dans le bloc. C’est en confrontant nos couleurs qu’on trouve le violet.',
+      copy: 'Copier le texte', shareImg: 'Partager mon image', alt: function (n) { return 'Mon résultat : ' + n + ' sur le cercle de Bloc Couleur'; },
+      hint: 'Ton image est prête pour les stories. Sur téléphone, tu peux aussi appuyer longuement sur l’image pour l’enregistrer.', saveHint: 'Si l’image ne s’enregistre pas, appuie longuement (ou clic droit) sur l’image pour l’enregistrer.', copied: 'Copié&nbsp;! Tu peux le coller où tu veux.', fail: 'Sélectionne le texte ci-dessus pour le copier.', join: 'Rejoindre le bloc', restart: 'Recommencer le quiz',
+      share: function (n) { return 'Je suis ' + n + ' sur le cercle de Bloc Couleur. Et toi ? bloc.forom.xyz'; } },
+    en: { q: 'Question', start: 'Answer the questions to move the needle.', now: 'So far:', you: 'Your colour:',
+      scale: ['← Idea A', 'Both', 'Idea B →'], aria: ['Fully agree with A', 'Rather A', 'Both', 'Rather B', 'Fully agree with B'],
+      back: '← Previous question', result: 'Result', common: 'Whatever your colour, there is a place for you in the bloc. It is by bringing our colours together that we find purple.',
+      copy: 'Copy the text', shareImg: 'Share my image', alt: function (n) { return 'My result: ' + n + ' on the Bloc Couleur circle'; },
+      hint: 'Your image is ready for stories. On a phone you can also press and hold the image to save it.', saveHint: 'If the image does not save, press and hold (or right-click) the image to save it.', copied: 'Copied! Paste it wherever you like.', fail: 'Select the text above to copy it.', join: 'Join the bloc', restart: 'Take the quiz again',
+      share: function (n) { return 'I am ' + n + ' on the Bloc Couleur circle. What about you? bloc.forom.xyz'; } }
+  };
+  var VALUES = [-2, -1, 0, 1, 2];
+  var answers = [null, null, null, null, null], idx = 0, shown = 0, target = 0, timer = null;
+
+  function avg() { var a = answers.filter(function (v) { return v !== null; }); return a.length ? a.reduce(function (s, v) { return s + v; }, 0) / a.length : null; }
+  function zone(v) { var t = v * 5; return t <= -6 ? 0 : t <= -1.5 ? 1 : t < 1.5 ? 2 : t < 6 ? 3 : 4; }
+  function draw() { window.blocWheel(cv, shown, false); }
+  function animate() {
+    if (reduce) { shown = target; draw(); return; }
+    if (timer) return;
+    timer = setInterval(function () {
+      var d = target - shown;
+      if (Math.abs(d) <= 4) { shown = target; draw(); clearInterval(timer); timer = null; return; }
+      shown += d > 0 ? 4 : -4; draw();
+    }, 40);
+  }
+  function setTarget() { var v = avg(); target = v === null ? 0 : v / 2 * 90; animate(); }
+
+  function renderReadout() {
+    var v = avg(), u = UI[lang()];
+    if (v === null) { readout.innerHTML = u.start; return; }
+    var z = ZONES[zone(v)];
+    readout.innerHTML = (idx >= Q.length ? u.you : u.now) + '<b style="color:' + z.c + '">' + z[lang()].n + '</b>';
+  }
+  function dots() {
+    var h = '<div class="q-dots" aria-hidden="true">';
+    for (var i = 0; i < Q.length; i++) h += '<i class="' + (answers[i] !== null && i !== idx ? 'done' : i === idx ? 'cur' : '') + '"></i>';
+    return h + '</div>';
+  }
+  function renderQuestion(focus) {
+    var u = UI[lang()], q = Q[idx][lang()], h = '';
+    h += '<div class="q-top"><span class="tag">' + u.q + ' ' + (idx + 1) + ' / ' + Q.length + '</span>' + dots() + '</div>';
+    h += '<h3 tabindex="-1" id="q-title">' + q.t + '</h3>';
+    h += '<div class="q-st"><p><span class="q-letter q-l">A</span><span>' + q.a + '</span></p><p><span class="q-letter q-r">B</span><span>' + q.b + '</span></p></div>';
+    h += '<div class="q-scale" role="group" aria-labelledby="q-title">';
+    VALUES.forEach(function (v, i) { h += '<button type="button" data-v="' + v + '" aria-label="' + u.aria[i] + '" aria-pressed="' + (answers[idx] === v) + '"></button>'; });
+    h += '</div><div class="q-scale-labels" aria-hidden="true"><span>' + u.scale[0] + '</span><span>' + u.scale[1] + '</span><span>' + u.scale[2] + '</span></div>';
+    if (idx > 0) h += '<button type="button" class="linkbtn" id="q-back">' + u.back + '</button>';
+    card.innerHTML = h;
+    card.querySelectorAll('.q-scale button').forEach(function (b) {
+      b.addEventListener('click', function () {
+        answers[idx] = +b.dataset.v; setTarget();
+        card.querySelectorAll('.q-scale button').forEach(function (o) { o.setAttribute('aria-pressed', String(o === b)); });
+        renderReadout();
+        setTimeout(function () { idx++; render(true); }, 280);
+      });
+    });
+    var back = document.getElementById('q-back');
+    if (back) back.addEventListener('click', function () { idx--; render(true); });
+    if (focus) document.getElementById('q-title').focus();
+  }
+  function renderResult(focus) {
+    var u = UI[lang()], zi = zone(avg()), z = ZONES[zi], name = z[lang()].n, text = u.share(name);
+    card.innerHTML = '<div class="q-top"><span class="tag">' + u.result + '</span>' + dots() + '</div>' +
+      '<h3 class="res-name" tabindex="-1" id="q-title" style="color:' + z.c + '">' + name + '</h3>' +
+      '<p class="res-text">' + z[lang()].t + '</p><p>' + u.common + '</p>' +
+      '<div class="share-wrap"><img class="share-img" id="q-img" alt="" width="1080" height="1920">' +
+      '<div class="share"><p class="share-text" id="q-share">' + text + '</p>' +
+      '<div class="res-actions"><button type="button" class="btn btn-solid" id="q-img-btn">' + u.shareImg + '</button><button type="button" class="btn btn-ghost" id="q-copy">' + u.copy + '</button></div>' +
+      '<p class="copy-msg" id="q-msg" aria-live="polite"></p><p class="hint">' + u.hint + '</p><a href="#joindre">' + u.join + ' →</a></div></div>' +
+      '<button type="button" class="linkbtn" id="q-restart">' + u.restart + '</button>';
+    document.getElementById('q-copy').addEventListener('click', function () {
+      var msg = document.getElementById('q-msg');
+      function fallback() {
+        var r = document.createRange(); r.selectNodeContents(document.getElementById('q-share'));
+        var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r); msg.innerHTML = u.fail;
+      }
+      try { navigator.clipboard.writeText(text).then(function () { msg.innerHTML = u.copied; }, fallback); } catch (e) { fallback(); }
+    });
+    document.getElementById('q-restart').addEventListener('click', function () { answers = answers.map(function () { return null; }); idx = 0; setTarget(); render(true); });
+    makeCard(zi, name, target, lang(), function (c) {
+      var img = document.getElementById('q-img'); if (!img) return;
+      img.src = c.toDataURL('image/png'); img.alt = u.alt(name);
+      document.getElementById('q-img-btn').onclick = function () {
+        var msg = document.getElementById('q-msg');
+        c.toBlob(function (blob) {
+          var fname = 'bloc-couleur-' + name.toLowerCase().normalize('NFD').replace(/[^a-z]+/g, '-') + '.png';
+          var file = null; try { file = new File([blob], fname, { type: 'image/png' }); } catch (e) {}
+          if (file && navigator.canShare && navigator.canShare({ files: [file] })) {
+            navigator.share({ files: [file], text: text }).catch(function (e) { if (e && e.name !== 'AbortError') msg.innerHTML = u.saveHint; });
+            return;
+          }
+          try { var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = fname; document.body.appendChild(a); a.click(); a.remove(); } catch (e) {}
+          msg.innerHTML = u.saveHint;
+        }, 'image/png');
+      };
+    });
+    if (focus) document.getElementById('q-title').focus();
+  }
+  var CARD_COL = ['#73A4FF', '#8F86F0', '#B48EFF', '#E07AC4', '#FF7B6F'];
+  var CARD_TXT = { fr: { q: 'Où es-tu sur le cercle ?', iam: 'Je suis', place: 'Ta place est dans le bloc.' },
+                   en: { q: 'Where are you on the circle?', iam: 'I am', place: 'There is a place for you in the bloc.' } };
+  function makeCard(zi, name, angle, lg, cb) {
+    var W = 1080, H = 1920, c = document.createElement('canvas'); c.width = W; c.height = H;
+    var x = c.getContext('2d'), F = function (px) { return px + 'px Tiny5, ui-monospace, monospace'; };
+    var go = function () {
+      x.imageSmoothingEnabled = false;
+      x.fillStyle = '#120a24'; x.fillRect(0, 0, W, H);
+      var seed = 11, rnd = function () { seed = (seed * 16807) % 2147483647; return seed / 2147483647; };
+      x.fillStyle = '#EEE8F8';
+      for (var i = 0; i < 90; i++) { var sx = Math.floor(rnd() * 135) * 8, sy = Math.floor(rnd() * 240) * 8; if (sx > 120 && sx < 952 && sy > 250) continue; x.fillRect(sx, sy, 8, 8); }
+      x.fillStyle = '#6B34B0'; x.fillRect(0, 0, W, 24); x.fillRect(0, H - 24, W, 24); x.fillRect(0, 0, 24, H); x.fillRect(W - 24, 0, 24, H);
+      var T = ['...####...', '..######..', '.########.', '##########', '##########', '##########', '##########', '.########.', '..######..', '...####...'];
+      x.font = F(60); var title = 'BLOC COULEUR', tw = x.measureText(title).width, lw = 16 * 8, lx = Math.round((W - lw - 28 - tw) / 2), ly = 120;
+      for (var yy = 0; yy < 10; yy++) for (var xx = 0; xx < 16; xx++) {
+        var inL = xx < 10 && T[yy][xx] === '#', inR = xx >= 6 && T[yy][xx - 6] === '#';
+        if (!inL && !inR) continue;
+        x.fillStyle = inL && inR ? '#B48EFF' : inL ? '#2D68D8' : '#D9443F';
+        x.fillRect(lx + xx * 8, ly + yy * 8, 8, 8);
+      }
+      x.textAlign = 'left'; x.textBaseline = 'middle'; x.fillStyle = '#EEE8F8'; x.fillText(title, lx + lw + 28, ly + 42);
+      x.textAlign = 'center'; x.textBaseline = 'alphabetic';
+      x.fillStyle = '#A89EBE'; x.font = F(60); x.fillText(CARD_TXT[lg].q, W / 2, 340);
+      var off = document.createElement('canvas'); off.width = 56; off.height = 56;
+      window.blocWheel(off, angle, false, '#EEE8F8'); x.drawImage(off, 148, 400, 784, 784);
+      x.fillStyle = '#EEE8F8'; x.font = F(64); x.fillText(CARD_TXT[lg].iam, W / 2, 1300);
+      var size = 136; x.font = F(size); while (x.measureText(name).width > 940 && size > 64) { size -= 8; x.font = F(size); }
+      x.fillStyle = CARD_COL[zi]; x.fillText(name, W / 2, 1450);
+      x.fillStyle = '#EEE8F8'; x.font = F(52); x.fillText(CARD_TXT[lg].place, W / 2, 1580);
+      ['#2D68D8', '#4A47C2', '#6B34B0', '#A33494', '#D9443F'].forEach(function (col, i) { x.fillStyle = col; x.fillRect(240 + i * 120, 1650, 112, 24); });
+      x.fillStyle = '#F6C45A'; x.font = F(64); x.fillText('bloc.forom.xyz', W / 2, 1810);
+      cb(c);
+    };
+    if (document.fonts && document.fonts.load) document.fonts.load(F(64)).then(go, go); else go();
+  }
+  function render(focus) { if (idx >= Q.length) renderResult(focus); else renderQuestion(focus); renderReadout(); }
+
+  draw(); render(false);
+  new MutationObserver(function () { render(false); }).observe(root, { attributes: true, attributeFilter: ['data-lang'] });
+  var redraw = function () { draw(); };
+  try { window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', redraw); } catch (e) {}
+  new MutationObserver(redraw).observe(root, { attributes: true, attributeFilter: ['data-theme'] });
+})();
+</script>
+
+<script>
+/* Rules-of-the-table pixel art + election countdown */
+(function () {
+  var t = document.getElementById('table-px');
+  if (t) {
+    var c = t.getContext('2d'), R = function (x, y, w, h, col) { c.fillStyle = col; c.fillRect(x, y, w, h); };
+    var cols = ['#2D68D8', '#4A47C2', '#6B34B0', '#A33494', '#D9443F'];
+    cols.forEach(function (col, i) { var x = 9 + i * 10; R(x - 1, 1, 8, 6, '#1D1430'); R(x, 2, 6, 4, col); R(x + 1, 2, 2, 1, '#FFFFFF'); });
+    cols.slice().reverse().forEach(function (col, i) { var x = 9 + i * 10; R(x - 1, 13, 8, 6, '#1D1430'); R(x, 14, 6, 4, col); R(x + 1, 14, 2, 1, '#FFFFFF'); });
+    R(4, 6, 56, 8, '#1D1430'); R(5, 7, 54, 6, '#7a4b3a'); R(5, 7, 54, 1, '#a36d52');
+    R(28, 8, 8, 4, '#F6C531'); R(29, 9, 6, 2, '#ffe08a');
+  }
+  var digits = document.getElementById('cd-digits'), sr = document.getElementById('cd-sr');
+  if (digits) {
+    var now = new Date(), today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    var days = Math.max(0, Math.round((new Date(2030, 9, 7) - today) / 864e5));
+    digits.innerHTML = String(days).split('').map(function (d) { return '<span>' + d + '</span>'; }).join('');
+    if (sr) sr.textContent = days + ' ';
+  }
+})();
+</script>
